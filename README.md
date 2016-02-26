@@ -1,25 +1,30 @@
-This repository is a `README` file with instructions for participants in Sacramento County's [Hack4Sac Civic Tech Challenge](http://hack4sac.saccounty.net/) to submit their entries.
+This repository includes the two files that **must be included** in all project submissions for Sacramento County's [Hack4Sac Civic Tech Challenge](http://hack4sac.saccounty.net/):
+1. this `README` containing instructions and information to include in your submission; and,
+2. a `LICENSE` that allows anyone to do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
 
 ## Project Information
 
 *Please complete the information below:*
 
 ### Project Name
-Enter a project title
+[Enter a project title]
 
 ### Project Description
-Enter a short description
+[Enter a short description]
 
 ### Team Members
-- Team Leader Name, email address
-- Additional Team Members, email address
-- ...
+- [Team Leader Name, email address]
+- [Additional Team Members, email address]
+- [...]
 
 ### Stakeholder Engagement
-- If you worked with County staff to develop your project, please enter the name and department of your contact
-- Include any nonprofits or other stakeholders you engaged to develop your project
+- [If you worked with County staff to develop your project, please enter the name and department of your contact]
+- [Include any nonprofits or other stakeholders you engaged in the development your project]
 
-## Instructions
+### Additional Information (optional)
+[Include any additional information that you would like the judges to know about your project]
+
+## Submission Instructions
 
 ### Step 1: Fork this Repository
 By forking this repository, we'll be able to find your project which will allow the judges to review your submission. Please note that cloning this repository or copying the contents of this `README` to your project will not allow us to find your project. Learn more about [how to fork a project repository](https://help.github.com/articles/fork-a-repo/).
@@ -31,7 +36,7 @@ You probably want your project to have a name other than `Hack4Sac`, so go ahead
 As long as you keep this `README.md` file in your repository, hack away on your project to your heart's content.
 
 ### Step 4: Add Your Team Information
-Add your project name, description, and team members at the top of this file by [committing changes](https://help.github.com/articles/adding-a-file-to-a-repository-from-the-command-line/). *Hint: a [commit history](https://github.com/rust-lang/rust/commits/master/README.md) will provide valuable information to the judges about the work your team invested in developing your particular solution.*
+Add your project name, description, and team members at the top of this file by [committing changes](https://help.github.com/articles/adding-a-file-to-a-repository-from-the-command-line/). In the `LICENSE` file, replace `[fullname]` with the name of the individual(s) or team you want attributed to your project. *Hint: a [commit history](https://github.com/rust-lang/rust/commits/master/README.md) will provide valuable information to the judges about the work your team invested in developing your particular solution.*
 
 ### Step 5: Submit Your Project
 Guess what? If you've already forked this repository, then you've already submitted your project. On April 12, 2016, the judges will review all of [the repositories listed here](https://github.com/SacCounty/Hack4Sac/network/members). If your repository is not listed, [please let us know](mailto:hack4sac@saccounty.net).
