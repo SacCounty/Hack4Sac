@@ -1,4 +1,5 @@
 This repository includes the two files that **must be included** in all project submissions for Sacramento County's [Hack4Sac Civic Tech Challenge](http://hack4sac.saccounty.net/):
+
 1. this `README` containing instructions and information to include in your submission; and,
 2. a `LICENSE` that allows anyone to do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
 
@@ -20,6 +21,9 @@ This repository includes the two files that **must be included** in all project 
 ### Stakeholder Engagement
 - [If you worked with County staff to develop your project, please enter the name and department of your contact]
 - [Include any nonprofits or other stakeholders you engaged in the development your project]
+
+### Developer Documentation
+[Include any necessary instructions for developers to setup their local development environment and deploy your project to a production server]
 
 ### Additional Information (optional)
 [Include any additional information that you would like the judges to know about your project]
