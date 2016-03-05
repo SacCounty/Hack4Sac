@@ -8,10 +8,10 @@ This repository includes the two files that **must be included** in all project 
 *Please complete the information below:*
 
 ### Project Name
-[Enter a project title]
+Voting Venue Accessibility App
 
 ### Project Description
-[Enter a short description]
+This app is intended to provide a resource for voting persons who need accessibility for voting venues.
 
 ### Team Members
 - [Team Leader Name, email address]
@@ -19,11 +19,19 @@ This repository includes the two files that **must be included** in all project 
 - [...]
 
 ### Stakeholder Engagement
-- [If you worked with County staff to develop your project, please enter the name and department of your contact]
+- Courtney Bailey, Voter Registration & Elections
+- Guy Sperry
 - [Include any nonprofits or other stakeholders you engaged in the development your project]
 
 ### Developer Documentation
-[Include any necessary instructions for developers to setup their local development environment and deploy your project to a production server]
+Clone the repo:
+`git clone https://github.com/abustamam/Voting`
+
+Install dependencies:
+`npm install`
+
+Run the server:
+`npm run start`
 
 ### Additional Information (optional)
 [Include any additional information that you would like the judges to know about your project]
