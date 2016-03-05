@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { NICE, SUPER_NICE } from './colors';
+import { NICE, SUPER_NICE } from '../colors';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import request from 'superagent'
-require('./lib/tota11y.min.js')
+require('../lib/tota11y.min.js')
 
 export class AppMap extends Component {
 
