@@ -5,6 +5,17 @@ import request from 'superagent'
 
 export class App extends Component {
 
+  constructor(props) {
+    super(props)
+
+    request
+      .get('http://saccounty.cloudapi.junar.com/api/v2/datastreams/SACRA-COUNT/data.json/?auth_key=365e06cd12a419135ae87d9f0ec0a8e60b25fbe3#sthash.qxY4OVZH.dpuf')
+      .end((err, res) => {
+        this.polygon = res.body.result.fArray[2].fStr.split(' ')
+        console.log(this.polygon)
+      })
+  }
+
   getStyles() {
     return {
       root: {
