@@ -14,9 +14,11 @@ Voting Venue Accessibility App
 This app is intended to provide a resource for voting persons who need accessibility for voting venues.
 
 ### Team Members
-- [Team Leader Name, email address]
-- [Additional Team Members, email address]
-- [...]
+- Rasheed Bustamam rasheed.bustamam@gmail.com
+- Hans Chun 
+- Brooks Newberry 
+- Nate Cornell 
+- Aheri Stanford-Asiyo
 
 ### Stakeholder Engagement
 - Courtney Bailey, Voter Registration & Elections
@@ -32,6 +34,9 @@ Install dependencies:
 
 Run the server:
 `npm run start`
+
+Open up in your web browser: 
+`localhost:3000`
 
 ### Additional Information (optional)
 [Include any additional information that you would like the judges to know about your project]
