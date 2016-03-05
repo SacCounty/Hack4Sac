@@ -4,7 +4,7 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 import request from 'superagent'
 require('../lib/tota11y.min.js')
 
-export class AppMap extends Component {
+export default class AppMap extends Component {
 
   constructor(props) {
     super(props)
