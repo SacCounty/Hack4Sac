@@ -16,7 +16,7 @@ This app is intended to provide a resource for voting persons who need accessibi
 ### Team Members
 - Rasheed Bustamam rasheed.bustamam@gmail.com
 - Hans Chun 
-- Brooks Newberry 
+- [Brooks Newberry](https://github.com/brooksn) 
 - Nate Cornell 
 - Aheri Stanford-Asiyo
 
