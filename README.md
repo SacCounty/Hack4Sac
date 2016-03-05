@@ -66,11 +66,11 @@ Guess what? If you've already forked this repository, then you've already submit
 
 *Hint: while optional, these tools will result in projects that help meet the needs of users and help the judges better understand the thinking behind your particular solution.*
 
-#### To use these tools, first replace `GITHUB_ACCOUNT` with the GitHub username or organization name to which you forked this repository so that the links correctly work.
+#### To use these tools, first replace `abustamam` with the GitHub username or organization name to which you forked this repository so that the links correctly work.
 
-[![Stories Ready to Work On](https://badge.waffle.io/GITHUB_ACCOUNT/project-submission-template.svg?label=ready&title=Cards%20Ready%20To%20Work%20On)](https://waffle.io/GITHUB_ACCOUNT/project-submission-template)
+[![Stories Ready to Work On](https://badge.waffle.io/abustamam/project-submission-template.svg?label=ready&title=Cards%20Ready%20To%20Work%20On)](https://waffle.io/abustamam/project-submission-template)
 
-This repo was created from http://hackshop.waffle.io. Use [the Waffle board](https://waffle.io/GITHUB_ACCOUNT/project-submission-template) for this repo to always know what to do next for your hackshop project!
+This repo was created from http://hackshop.waffle.io. Use [the Waffle board](https://waffle.io/abustamam/project-submission-template) for this repo to always know what to do next for your hackshop project!
 
 #### Why Hackshops?
 
