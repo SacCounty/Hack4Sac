@@ -3,6 +3,8 @@ This repository includes the two files that **must be included** in all project 
 1. this `README` containing instructions and information to include in your submission; and,
 2. a `LICENSE` that allows anyone to do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
 
+[![Stories in Ready](https://badge.waffle.io/abustamam/polling-place-accessibility.png?label=ready&title=Ready)](http://waffle.io/abustamam/polling-place-accessibility)
+
 ## Project Information
 
 *Please complete the information below:*
