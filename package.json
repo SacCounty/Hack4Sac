@@ -6,7 +6,8 @@
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack && gulp sass",
-    "start": "gulp && node devServer.js",
+    "start": "node devServer.js",
+    "watch": "gulp",
     "lint": "eslint src"
   },
   "repository": {
