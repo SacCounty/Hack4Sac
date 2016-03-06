@@ -7,7 +7,7 @@ var sassPaths = [
 ];
 
 gulp.task('sass', function() {
-  return gulp.src('scss/app.scss')
+  return gulp.src('src/assets/scss/app.scss')
     .pipe($.sass({
       includePaths: sassPaths
     })
