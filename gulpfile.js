@@ -7,7 +7,7 @@ var sassPaths = [
 ];
 
 gulp.task('sass', function() {
-  return gulp.src('scss/app.scss')
+  return gulp.src('src/assets/scss/**/*.scss')
     .pipe($.sass({
       includePaths: sassPaths
     })
@@ -15,7 +15,7 @@ gulp.task('sass', function() {
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'ie >= 9']
     }))
-    .pipe(gulp.dest('css'));
+    .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('default', ['sass'], function() {
