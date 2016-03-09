@@ -15,7 +15,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.get('/static/css/*.css', function(req, res){
   res.type('text/css');
-  res.sendFile(path.join(__dirname, 'dist/css/app.css'));
+  res.sendFile(path.join(__dirname, 'css/app.css'));
 });
 
 app.use(express.static('public'))
