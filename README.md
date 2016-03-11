@@ -14,9 +14,13 @@ This repository includes the two files that **must be included** in all project 
 [Enter a short description]
 
 ### Team Members
-- [Team Leader Name, email address]
-- [Additional Team Members, email address]
-- [...]
+- Christine, christine@hax.help
+- Erik, erik@hax.help
+- Koni, koni@hax.help
+- Donny, donny@hax.help
+- Adam, adam@hax.help
+- Mercer, mercer@hax.help
+- Joanne, joanne@hax.help
 
 ### Stakeholder Engagement
 - [If you worked with County staff to develop your project, please enter the name and department of your contact]
