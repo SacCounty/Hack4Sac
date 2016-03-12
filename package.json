@@ -59,6 +59,7 @@
   "dependencies": {
     "babel-core": "^6.6.5",
     "leaflet": "^0.7.7",
+    "pg": "^4.5.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-leaflet": "^0.10.1",
