@@ -22,8 +22,8 @@ export default class PollingPlaceForm extends Component {
     if (!this.state.latitude || !this.state.longitude) var map = null;
     else {
       var map = (
-        <div style={this.props.styles.root}>
-          <Map center={[this.state.latitude, this.state.longitude]} zoom={15} style={this.props.styles.map}>
+        <div id="map-container">
+          <Map className="full-height" center={[this.state.latitude, this.state.longitude]} zoom={15}>
             <TileLayer
               url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -38,15 +38,15 @@ export default class PollingPlaceForm extends Component {
       );
     }
     return (
-      <div className="polling-place-form row">
+      <div className="polling-place-form-row row">
         <div className="medium-12 columns">
-          <h1>Polling Place Form</h1>
-          <p>
-            <span>house num: <input type="text" name="house" onChange={this.handleHouseChange.bind(this)}></input></span><br />
-            <span>zip: <input type="text" name="zip" onChange={this.handleZipChange.bind(this)}></input></span><br />
-            <span>date of birth: <input type="text" name="dob" onChange={this.handleDobChange.bind(this)}></input></span><br />
-            <span><input type="submit" value="Submit" onClick={this.handleSubmit.bind(this)}></input></span><br />
-          </p>
+          <h2>Polling Place Form</h2>
+          <form id="polling-place-form" data-abide>
+            <label>House Number <input type="number" name="house" id="house" placeholder="e.g. '1234'" required onChange={this.handleHouseChange.bind(this)}></input></label>
+            <label>5-Digit Zip Code <input type="number" name="zip" id="zip" placeholder="e.g. '54321'" required onChange={this.handleZipChange.bind(this)}></input></label>
+            <label>Date of Birth <small>(MM/DD/YYYY)</small><input type="text" placeholder="MM/DD/YYYY" name="dob" id="dob" required onChange={this.handleDobChange.bind(this)}></input></label>
+            <input type="submit" value="Submit" onClick={this.handleSubmit.bind(this)}></input>
+          </form>
           <p>{caption} {addressLink}</p>
           {map}
         </div>
@@ -94,7 +94,7 @@ export default class PollingPlaceForm extends Component {
 PollingPlaceForm.defaultProps = {
   fusionkey: 'AIzaSyBXp2otyudYdGVmWC498IsawNeStFRuJBk', //read-only access
   mapboxkey: 'pk.eyJ1IjoiYnJvb2tzbiIsImEiOiJjaWpkbmkzMDEwMDh3dGdra2Y0OHYwbjViIn0.gqY3_NGpI96FuDQ7csaOUw', //geocoding API
-  caption: 'Enter hour house number, zip code, and date of birth to find your polling place.',
+  caption: 'Enter your house number, zip code, and date of birth to find your polling place.',
   stateAbbr: 'CA',
   approxLat: '38.5789777', //geocoding bias
   approxLong: '-121.4829292', //geocoding bias

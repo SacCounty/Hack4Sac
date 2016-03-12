@@ -5,6 +5,10 @@
   max-width: initial;
 }
 
+.full-height {
+  height: 100%;
+}
+
 .header-row {
   background: url('https://images.unsplash.com/photo-1421284621639-884f4129b61d?crop=entropy&fit=crop&fm=jpg&h=975&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1925');
   background-position: center;
@@ -18,4 +22,8 @@
     text-shadow: 2px 2px #333;
     color: #fff;
   }
+}
+
+#map-container {
+  height: 20em;
 }
