@@ -54,6 +54,7 @@ export default class PollingPlaceForm extends Component {
     );
   }
   handleSubmit(event) {
+    event.preventDefault();
     pollingPlaceRequests.voter(this.state.house, this.state.zip, this.state.dob, this.props.fusionkey)
     .then(function(data){
       if (data.MailDate && data.MailDate != '') {
