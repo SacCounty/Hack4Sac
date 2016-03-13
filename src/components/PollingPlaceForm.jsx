@@ -44,7 +44,7 @@ export default class PollingPlaceForm extends Component {
           <form id="polling-place-form" data-abide>
             <label>House Number <input type="number" name="house" id="house" placeholder="e.g. '1234'" required onChange={this.handleHouseChange.bind(this)}></input></label>
             <label>5-Digit Zip Code <input type="number" name="zip" id="zip" placeholder="e.g. '54321'" required onChange={this.handleZipChange.bind(this)}></input></label>
-            <label>Date of Birth <small>(MM/DD/YYYY)</small><input type="text" placeholder="MM/DD/YYYY" name="dob" id="dob" required onChange={this.handleDobChange.bind(this)}></input></label>
+            <label>Date of Birth <small>(MM/DD/YYYY)</small><input type="date" placeholder="MM/DD/YYYY" name="dob" id="dob" required onChange={this.handleDobChange.bind(this)}></input></label>
             <input type="submit" value="Submit" onClick={this.handleSubmit.bind(this)}></input>
           </form>
           <p>{caption} {addressLink}</p>
