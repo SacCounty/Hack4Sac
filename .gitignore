@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+npm-debug.log
+dist
+bower_components
+public/css/*
+css/*
+src/data/*
