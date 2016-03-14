@@ -17,6 +17,9 @@ gem 'mail_form', '~> 1.5.1'
 gem 'simple_form', '~> 3.2.0'
 gem 'pdf-forms'
 
+# activeadmin >= 1.0.0 is still under development
+# but required for Rails 4 and above
+gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 
 group :development, :test do
