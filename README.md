@@ -21,11 +21,46 @@ The mission of HARE is to break down the siloes between departments and organiza
 - Joanne, joanne@hax.help
 
 ### Stakeholder Engagement
-- [If you worked with County staff to develop your project, please enter the name and department of your contact]
-- [Include any nonprofits or other stakeholders you engaged in the development your project]
+- Jerry Gray, DTech (Sac County Dept of Technology)
 
 ### Developer Documentation
-[Include any necessary instructions for developers to setup their local development environment and deploy your project to a production server]
+#### Requirements
+ - <a href="http://git-scm.com/" target="_blank">Git</a>
+ -  Ruby 2.2 (<a href="https://rvm.io/rvm/install" target="_blank">RVM</a> recommended for managing Ruby versions)
+ -  Rails 4.2
+ -  Postgres >= 9.3
+ - <a href="https://github.com/sstephenson/execjs" target="_blank">ExecJS</a> supported JavaScript runtime (therubyracer gem is included)
+
+To check your ruby version, run `$ ruby --version`. If your version is 2.2.0, then you’re good to go.
+
+If not, download <a href="https://rvm.io/rvm/install" target="_blank">RVM</a> if not already installed, then run `$ rvm list` to see your installed ruby versions. If you have 2.2.0 installed, run `$ rvm use ruby-2.2.0`. Otherwise, install or update your ruby version with RVM.
+
+1. Download or clone this repository from GitHub `$ git clone https://github.com/erikcaineolson/HARE.git HARE`
+2. Change directory into the project folder `$ cd HARE`
+3. Download dependencies `$ gem install bundler` then `$ bundle install`
+4. Set up the Postgres database (see **Database** section below)
+5. Run `$ rails server`
+6. Point your browser to `localhost:3000` to preview the app
+
+#### API Keys
+We are using <a href="https://github.com/laserlemon/figaro" target="_blank">Figaro</a> for key management.
+
+To install, run `$ bundle exec figaro install`
+
+This will create a key management YAML file at `app/config/application.yml` and add it to your `.gitignore`. This config file should *not* be committed to the repo. Please edit this file on your local machine as new keys are added.
+
+Figaro is deployment-friendly and values can be set for Heroku with:
+
+```
+figaro heroku:set -e production
+```
+
+#### Database
+1. Install PostgreSQL
+2. Create the database `$ bundle exec rake db:create`
+3. Load the schema `$ bundle exec rake db:schema:load`
+4. (Optional) Seed the database with default admin user and starter data `$ bundle exec rake db:seed`
+ - Note: The default behavior for db:seed has been modified to use different datasets based on environment. See notes in the `seeds.rb` file.
 
 ### Additional Information (optional)
 We respect our organizational users and their constituents, so we take precautions to ensure neither are exploited intentionally or accidentally by using our app. Considering the sensitive nature of services provided by our users, the database schema and API are designed to separate user information (real names) from addresses and from app activity. For example, the API may provide data as to how many users requested resources from a certain category, and whether they were individuals or organizations making the request, but not which users. The API may provide data as to how many users are in a certain zipcode, but not which users nor specific addresses. The API may provide data showing how many users made requests to multiple agencies, but not which users made the request. The API does *not* allow viewing whether a specific individual requested or received specific types of donations or from which agency.
