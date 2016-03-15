@@ -39,6 +39,7 @@ end
 
 group :development do
   gem 'spring'
+  gem 'rails_layout'
   gem 'awesome_print'
   gem 'guard-rails'
   gem 'guard-livereload'
