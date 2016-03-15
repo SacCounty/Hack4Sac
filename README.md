@@ -5,13 +5,11 @@ This repository includes the two files that **must be included** in all project 
 
 ## Project Information
 
-*Please complete the information below:*
-
 ### Project Name
-[Enter a project title]
+HARE (Human Assistance Resource Exchange)
 
 ### Project Description
-[Enter a short description]
+The mission of HARE is to break down the siloes between departments and organizations that share the common goal of providing Human Assistance. For example, the Food Bank networks with local food pantries, a School District networks with schools under its administration, and the Homeless Assistance agency networks with local homeless shelters. Sometimes their constituents overlap, but these agencies know little about each other's needs, available resources, and data. HARE addresses this disparity on two fronts: first, it's a platform for organizations and individuals to reach out to each other to provide resources or request resources that other agencies have in surplus, like clothing, furniture, non-perishable foods, computers, and more. Second, it supports the civic open data initiative by collecting anonymous data that is released as an API* (see **Additional Information** section). This will provide other civic developers and researchers invaluable cross-sectional data that could uncover insights as to common issues shared by different types of HA programs or initiatives that work well in one agency that can be applied to another.
 
 ### Team Members
 - Christine, christine@hax.help
@@ -30,7 +28,7 @@ This repository includes the two files that **must be included** in all project 
 [Include any necessary instructions for developers to setup their local development environment and deploy your project to a production server]
 
 ### Additional Information (optional)
-[Include any additional information that you would like the judges to know about your project]
+We respect our organizational users and their constituents, so we take precautions to ensure neither are exploited intentionally or accidentally by using our app. Considering the sensitive nature of services provided by our users, the database schema and API are designed to separate user information (real names) from addresses and from app activity. For example, the API may provide data as to how many users requested resources from a certain category, and whether they were individuals or organizations making the request, but not which users. The API may provide data as to how many users are in a certain zipcode, but not which users nor specific addresses. The API may provide data showing how many users made requests to multiple agencies, but not which users made the request. The API does *not* allow viewing whether a specific individual requested or received specific types of donations or from which agency.
 
 ## Submission Instructions
 
