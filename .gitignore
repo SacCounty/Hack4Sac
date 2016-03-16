@@ -22,3 +22,7 @@ secrets/*
 
 # Ignore desktop config files created by Apple OS X
 .DS_Store
+
+# Block RubyMine IDE from uploading its config files
+/.idea
+
