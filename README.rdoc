@@ -1,0 +1,10 @@
+== README
+
+* Ruby 2.1.2
+
+== Setup
+
+* Clone this repository
+* Install PostgreSQL and setup database
+* Install Figaro and add env vars to config/application.yml
+* Run $ rails server
