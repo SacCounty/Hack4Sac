@@ -55,6 +55,14 @@ Figaro is deployment-friendly and values can be set for Heroku with:
 figaro heroku:set -e production
 ```
 
+#### PDF Form Fill
+We are using PDF Toolkit (pdftk) from PDF Labs. This requires you to install pdftk binaries before you can make use of the pdf-forms gem bundled in this project.
+
+Download and install the appropriate package for your platform:
+
+ - [Mac OS X 10.10 (Yosemite)](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-mac_osx-10.11-setup.pkg) and below
+ - [Windows 8](https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/pdftk_server-2.02-win-setup.exe) and below
+
 #### Database
 1. Install PostgreSQL
 2. Create the database `$ bundle exec rake db:create`
