@@ -3,18 +3,8 @@ class AddressesController < ApplicationController
   before_action :get_address, only: [:edit, :update, :destroy]
   before_action :address_params, only: [:create, :update]
 
-  private
-    def address_params
-      @address = Address.create(params.require(:address).permit(:street_address_1, :street_address_2,
-                                                                :city, :state, :zip_code, :phone, :fax))
-    end
-
-    def get_address
-      @address = Address.find(params[:id])
-    end
-
   def index
-    @addresses = Address.all()
+    @addresses = Address.all
   end
 
   def show
@@ -28,22 +18,22 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(params[:address])
+    @address = Address.new(@address_params)
 
     if @address.save
       redirect_to @address
     else
-      render 'addresses/new'
+      return_to_index
     end
   end
 
   def update
-    @address = Address.update(params[:address])
+    @address = Address.update(@address_params)
 
     if @address.save
       redirect_to @address
     else
-      render 'addresses/edit'
+      return_to_index
     end
   end
 
@@ -52,6 +42,20 @@ class AddressesController < ApplicationController
 
     @address.save
 
-    redirect_to addresses_index_path
+    return_to_index
   end
+
+  private
+    def address_params
+      @address_params = params.require(:address).permit(:street_address_1, :street_address_2,
+                                                                :city, :state, :zip_code, :phone, :fax)
+    end
+
+    def get_address
+      @address = Address.find(params[:id])
+    end
+
+    def return_to_index
+      render 'addresses/index'
+    end
 end
