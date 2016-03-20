@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  resources :addresses
+    get 'addresses/index'
+
+    get 'addresses/show'
+
+    get 'addresses/new'
+
+    get 'addresses/edit'
+
+    get 'addresses/create'
+
+    get 'addresses/update'
+
+    get 'addresses/destroy'
+
   root "home#index"
 
   devise_for :users
