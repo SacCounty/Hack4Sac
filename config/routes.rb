@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'donation_app_pdfs/show'
+
   resources :addresses
     get 'addresses/index'
 

@@ -1,6 +1,4 @@
 class DonationAppPdfsController < ApplicationController
-  # TODO: implement user authentication
-
   def show
     user = User.find(params[:user_id])
     user_q = user.users_questionnaires
