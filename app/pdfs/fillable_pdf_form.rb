@@ -8,7 +8,10 @@ class FillablePdfForm
 
   def export(output_file_path=nil)
     # Make sure tmp/pdfs exists
-    output_path = output_file_path || "#{Rails.root}/tmp/pdfs/#{SecureRandom.uuid}.pdf"
+    # feeling the output path is too long...files keep breaking on out...is this why?
+    #output_path = output_file_path || "#{Rails.root}/tmp/pdfs/#{SecureRandom.uuid}.pdf"
+    # less likely to avoid a collision than SecureRandom.uuid...add user ID (then it has to policy-wise ;)
+    output_path = Time.now.to_f.to_s.sub('.', '-') + '.pdf'
     pdftk.fill_form template_path, output_path, attributes
     output_path
   end
