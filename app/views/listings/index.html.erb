@@ -7,7 +7,7 @@ This view should not have the listing creator's contact info or the "Make Reques
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/normalize.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css">
 <link href='http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="main.css"/>
+<link rel="stylesheet" type="text/css" href="index.css"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 </head>
@@ -15,7 +15,6 @@ This view should not have the listing creator's contact info or the "Make Reques
 <body>
 
 <!--HEADER START-->
-<div class="container">
 <div class="row" id ="header">
 <div class="large-8 columns">
 <h3>Human Assistance Resource Exchange | HARE</h3>
@@ -24,7 +23,6 @@ This view should not have the listing creator's contact info or the "Make Reques
 <ul class="inline-list" id="update-info">
   <li><a href="#">Update Account Information</a></li>
   </ul>
-</div>
 </div>
 </div>
 <!--HEADER END-->
@@ -36,28 +34,50 @@ This view should not have the listing creator's contact info or the "Make Reques
   <li class="tab-title active"><a href="#all-listings">View Listings</a></li>
   <li class="tab-title"><a href="#panel2">Make a Listing</a></li>
   <li class="tab-title"><a href="#panel3">Request History</a></li>
+  <li class="tab-title"><a href="#panel4">My Donations</a></li>
 </ul>
 <div class="tabs-content">
 
 <!--TAB 1: VIEW LISTINGS-->
 <div class="content active" id="all-listings">
-<!--TAB 1: VIEW LISTINGS: Filter-->
-<dl class="sub-nav">
-  <dt>Filter by Item Category:</dt>
-  <dd class="active"><a href="#">Furniture</a></dd>
-  <dd><a href="#">Hygeine</a></dd>
-  <dd><a href="#">Computers</a></dd>
-  <dd><a href="#">Clothing</a></dd>
-  <dd><a href="#">Office Supplies</a></dd>
-  <dd><a href="#">Vehicles</a></dd>
-</dl>
-<!--TAB 1: VIEW LISTINGS: Single Listings-->
-<div class="row" id="listing-item">
-  <div class="large-4 columns">
+
+<!--TAB 1: VIEW LISTINGS: Check box for item categories-->
+<div class="row">
+    <div class="large-3 columns" id="listing-filters">
+        <h6>Filter by Item Category:</h6>
+        <div class="inline-field">
+            <input type="checkbox" id="checkbox1">
+            <label for="checkbox1">Furniture</label>
+        </div>
+
+        <div class="inline-field">
+            <input type="checkbox" id="checkbox2">
+            <label for="checkbox2">Hygeine</label>
+        </div>
+        <div class="inline-field">
+            <input type="checkbox" id="checkbox3">
+            <label for="checkbox3">Computers</label>
+        </div>
+
+        <div class="inline-field">
+            <input type="checkbox" id="checkbox4">
+            <label for="checkbox4">Clothing</label>
+        </div>
+
+        <div class="inline-field">
+            <input type="checkbox" id="checkbox5">
+            <label for="checkbox5">Office Supplies</label>
+        </div>
+        <div class="inline-field">
+            <input type="checkbox" id="checkbox6">
+            <label for="checkbox6">Vehicles</label>
+        </div>
+    </div>
+  <div class="large-3 columns" id="listings-content">
     <figure class="listing-item">
-    <img src="http://placehold.it/400x300&text=[img]"> <!--How to insert item picture?-->
+    <img src="http://placehold.it/100x100&text=[img]">
   </div>
-  <div class="large-8 columns">
+  <div class="large-6 columns">
     <h4>Item Name</h4> <!--How to insert item name?-->
     <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
     <ul class="inline-list">
@@ -66,8 +86,5 @@ This view should not have the listing creator's contact info or the "Make Reques
   </div>
 </div>
 
-</div>
-</div>
-<!--TAB PANEL END-->
 
 </body>
