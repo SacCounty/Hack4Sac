@@ -18,8 +18,9 @@ class DonationApplicationPdf < FillablePdfForm
                     @user.entity_name
                 end
 
-    fill :contact_name, @user.name
     fill :applicant_name, @user.name
+
+    fill :contact_name, @user_q.questionnaire.questions.find(question_text: 'Organization Contact Name').response.response_text
 
     [:sign_date, :application_date].each do |field|
       fill field, Date.today.to_s
@@ -29,78 +30,93 @@ class DonationApplicationPdf < FillablePdfForm
       fill field, @address.send(field)
     end
 
-    state_zip_code = 'CA 95616'#@address.state.to_s + ' ' + @address.zip_code.to_s
+    state_zip_code = 'CA 95616' #@address.state.to_s + ' ' + @address.zip_code.to_s
     fill :state_zip, state_zip_code
 
-    fill :tax_exempt_no, case @user_q.question.find(question_text: 'Tax Exempt').response.response_text.to_s.downcase
+    fill :tax_exempt_no, case @user_q.questionnaire.questions.find(question_text: 'Are you exempt from taxation pursuant to 26 U.S.C 501 ( c )(3)?').response.response_text.to_s.downcase
                            when nil then
+                             'Off'
+                           when 'Yes' then
                              'Off'
                            else
                              'No'
                          end
 
-    fill :tax_exempt_yes, case @user_q.question.find(question_text: 'Tax Exempt').response.response_text.to_s.downcase
+    fill :tax_exempt_yes, case @user_q.questionnaire.questions.find(question_text: 'Are you exempt from taxation pursuant to 26 U.S.C 501 ( c )(3)?').response.response_text.to_s.downcase
                             when nil then
+                              'Off'
+                            when 'No' then
                               'Off'
                             else
                               'Yes'
                           end
 
-    fill :school_district_name, case @user_q.question.find(question_text: 'School District (Specify)').response.response_text
+    fill :school_district_name, case @user_q.questionnaire.questions.find(question_text: 'School District Name').response.response_text
                                   when nil then
                                     ''
                                   else
-                                    @user_q.question.find(question_text: 'School District (Specify)').response.response_text
+                                    @user_q.questionnaire.questions.find(question_text: 'School District Name').response.response_text
                                 end
 
-    fill :school_district_no, case @user_q.question.find(question_text: 'School District').response.response_text.to_s.downcase
+    fill :school_district_no, case @user_q.questionnaire.questions.find(question_text: 'Are you a School District?').response.response_text.to_s.downcase
                                 when nil then
+                                  'Off'
+                                when 'Yes' then
                                   'Off'
                                 else
                                   'No'
                               end
 
-    fill :school_district_yes, case @user_q.question.find(question_text: 'School District').response.response_text.to_s.downcase
+    fill :school_district_yes, case @user_q.questionnaire.questions.find(question_text: 'Are you a School District?').response.response_text.to_s.downcase
                                  when nil then
+                                   'Off'
+                                 when 'No' then
                                    'Off'
                                  else
                                    'Yes'
                                end
 
-    fill :special_district_name, case @user_q.question.find(question_text: 'Special District (Specify)').response.response_text
+    fill :special_district_name, case @user_q.questionnaire.questions.find(question_text: 'Special District Name').response.response_text
                                    when nil then
                                      ''
                                    else
-                                     @user_q.question.find(question_text: 'Special District (Specify)').response.response_text
+                                     @user_q.questionnaire.questions.find(question_text: 'Special District Name').response.response_text
                                  end
 
-    fill :special_district_no, case @user_q.question.find(question_text: 'Special District').response.response_text.to_s.downcase
+    fill :special_district_no, case @user_q.questionnaire.questions.find(question_text: 'Are you a Special District?').response.response_text.to_s.downcase
                                  when nil then
+                                   'Off'
+                                 when 'Yes' then
                                    'Off'
                                  else
                                    'No'
                                end
 
-    fill :special_district_yes, case @user_q.question.find(question_text: 'Special District').response.response_text.to_s.downcase
+    fill :special_district_yes, case @user_q.questionnaire.questions.find(question_text: 'Are you a Special District?').response.response_text.to_s.downcase
                                   when nil then
+                                    'Off'
+                                  when 'No' then
                                     'Off'
                                   else
                                     'Yes'
                                 end
 
-    fill :public_benefits_no, case @user_q.question.find(question_text: 'Public Benefits').response.response_text.to_s.downcase
-                                when nil then
-                                  'Off'
-                                else
-                                  'No'
-                              end
+    if @user_q.questionnaire.questions.find(question_text: 'Are you receiving CalFresh benefits?').response.response_text.to_s.downcase == 'yes' or
+        @user_q.questionnaire.questions.find(question_text: 'Are you receiving CalWORKS benefits?').response.response_text.to_s.downcase == 'yes' or
+        @user_q.questionnaire.questions.find(question_text: 'Are you receiving County Relief benefits?').response.response_text.to_s.downcase == 'yes' or
+        @user_q.questionnaire.questions.find(question_text: 'Are you receiving General Relief benefits?').response.response_text.to_s.downcase == 'yes' or
+        @user_q.questionnaire.questions.find(question_text: 'Are you receiving General Assistance benefits?').response.response_text.to_s.downcase == 'yes' or
+        @user_q.questionnaire.questions.find(question_text: 'Are you receiving MediCal benefits?').response.response_text.to_s.downcase == 'yes'
+      public_benefits_yes = 'Yes'
+      public_benefits_no = 'Off'
+    else
+      public_benefits_yes = 'Off'
+      public_benefits_no = 'No'
+    end
 
-    fill :public_benefits_yes, case @user_q.question.find(question_text: 'Public Benefits').response.response_text.to_s.downcase
-                                 when nil then
-                                   'Off'
-                                 else
-                                   'Yes'
-                               end
+    fill :public_benefits_no, public_benefits_no
+
+    fill :public_benefits_yes, public_benefits_yes
 
     true
   end
