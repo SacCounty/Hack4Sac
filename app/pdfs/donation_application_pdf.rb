@@ -1,10 +1,9 @@
 class DonationApplicationPdf < FillablePdfForm
 
-  def initialize(user, address, listing, user_q)
+  def initialize(user, listing)
     @user = user
-    @address = address
+    @address = @user.address.first      # TODO: when we implement a means to select the address you want to use, we will need to pass this in
     @listing = listing
-    @user_q = user_q
     super()
   end
 
