@@ -12,6 +12,9 @@ html, body {
   vertical-align: middle; /* Fixes any weird issues in Firefox and IE */
 }
 
+#request-history {
+  padding: 20px;
+
 #listings-content {
 float: left;
 }
