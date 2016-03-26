@@ -7,7 +7,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'therubyracer', platforms: :ruby
-gem 'foundation-rails'
+gem 'normalize-rails'
+gem 'foundation-rails', '~> 5.5.3'
 
 gem 'figaro', '>= 1.0.0'
 gem 'jquery-rails'
