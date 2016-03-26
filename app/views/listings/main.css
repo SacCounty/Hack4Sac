@@ -5,6 +5,24 @@ html, body {
   height: 100%;
 }
 
+.inline-field input,
+.inline-field label {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle; /* Fixes any weird issues in Firefox and IE */
+}
+
+#request-history {
+  padding: 20px;
+
+#listings-content {
+float: left;
+}
+
+#listings-wrapper {
+overflow: auto; /* For FF, Safari, Opera, etc */
+width: 100%; /* For IE5, IE5.5, IE6, IE7 */
+}
 
 #header{
     margin-bottom: 30px;
