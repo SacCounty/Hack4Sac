@@ -14,11 +14,8 @@ The mission of HARE is to break down the siloes between departments and organiza
 ### Team Members
 - Christine, christine@hax.help
 - Erik, erik@hax.help
-- Koni, koni@hax.help
-- Donny, donny@hax.help
-- Adam, adam@hax.help
-- Mercer, mercer@hax.help
 - Joanne, joanne@hax.help
+- Koni, koni@hax.help
 
 ### Stakeholder Engagement
 - Jerry Gray, DTech (Sac County Dept of Technology)
