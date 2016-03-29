@@ -13,6 +13,7 @@ class ListingsController < ApplicationController
   end
 
   def index
+    @categories = Category.all.to_a
     @listings = Listing.all
   end
 
