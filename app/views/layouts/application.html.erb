@@ -11,9 +11,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header>
-      <%= render 'layouts/navigation' %>
-    </header>
+    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/header' %>
     <main role="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
