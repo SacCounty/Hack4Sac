@@ -56,4 +56,60 @@ ind_q.each do |question|
   q.save! unless Question.exists? q
 end
 
+###
+# USERS
+####
+
+# ORGANIZATION ACCOUNTS
+10.times do
+  user = User.new(
+    name: Faker::Name.name,
+    entity_name: Faker::Company.name + " " + Faker::Company.suffix,
+    entity_license: Faker::Company.ein,
+    email: Faker::Internet.safe_email,
+    password: "password",
+    password_confirmation: "password",
+    account_type: "organization"
+  )
+  user.save
+  user.questionnaires.build(name: "organization").save
+end
+
+# INDIVIDUAL ACCOUNTS
+10.times do
+  user = User.new(
+    name: Faker::Name.name,
+    email: Faker::Internet.safe_email,
+    password: "password",
+    password_confirmation: "password",
+    account_type: "individual"
+  )
+  user.save
+  user.questionnaires.build(name: "individual").save
+end
+
+###
+# LISTINGS & CATEGORIES
+###
+categories = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
+
+all_users = User.all.to_a
+
+all_users.each do |u|
+  3.times do
+    listing = u.listings.build(
+      title: Faker::Commerce.product_name,
+      description: Faker::Lorem.paragraph,
+      fair_market_value: rand(250).abs
+    )
+    listing.save
+    listing.categories.build(name: categories.sample)
+    listing.save
+  end
+end
+
+
+
+
+
 
