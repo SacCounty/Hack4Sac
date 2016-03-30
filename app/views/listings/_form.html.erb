@@ -6,3 +6,15 @@ I will put code in here specifically for forms. In the "listings/new.html.erb" w
 {%= render 'listings/form' %}
 
 -->
+<%= simple_form_for(@listing) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :fair_market_value %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+<% end %>
