@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
+<body>
+  <h1>Congratulations, <%= @donor.name %>!</h1>
+  <h2>Your item "<%= listing.title %>" has garnered interest</h2>
+  <p><%= @listing.description %></p>
+  <h3>Donee Contact Information</h3>
+  <ul>
+    <% unless @donee.entity_name.empty? %>
+      <li>Entity Name: <%= @donee.entity_name %></li>
+    <% end %>
+    <li>Name: <%= @donee.name %></li>
+    <li>Phone: <%= @donee.address.phone %></li>
+    <% unless @donee.address.fax.empty? %>
+      <li>Fax: <%= @donee.address.fax %></li>
+    <% end %>
+    <li>Email: <%= @donee.email %></li>
+  </ul>
+  <p>Please contact <%= @donee.name %> at your earliest convenience!</p>
+  <p>Thank You!</p>
+  <p>Human Assistance Resource Exchange (HARE)</p>
+</body>
+</html>
