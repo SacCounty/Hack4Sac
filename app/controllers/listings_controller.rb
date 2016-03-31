@@ -8,6 +8,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params.merge! creator: current_user)
 
     if @listing.save
+      @listing.categories << Category.find(params[:listing][:category_ids])
       redirect_to listings_path, :notice => "Your listing has been saved"
     else
       redirect_to new_listing_path, :notice => "Your listing could not be created. Make sure all fields are filled out and try again."
@@ -43,8 +44,6 @@ class ListingsController < ApplicationController
   private
 
   def listing_params
-   params.require(:listings).permit(:id, :title, :description, :fair_market_value, :categories_attributes => [:id, :name])
+   params.require(:listing).permit(:id, :title, :description, :fair_market_value)
   end
 end
-
-

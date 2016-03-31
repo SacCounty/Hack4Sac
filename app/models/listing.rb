@@ -4,5 +4,4 @@ class Listing < ActiveRecord::Base
   has_many :followers, through: :followed_listings
   has_many :listings_categories, dependent: :destroy
   has_many :categories, through: :listings_categories
-  accepts_nested_attributes_for :categories
 end

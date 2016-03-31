@@ -1,17 +1,9 @@
-<!--
-This file is known as a "partial."
-
-I will put code in here specifically for forms. In the "listings/new.html.erb" where you want to insert a form, all you need to write is:
-
-{%= render 'listings/form' %}
-
--->
 <%= simple_form_for(@listing) do |f| %>
     <%= f.error_notification %>
     <div class="form-inputs">
       <%= f.input :title %>
       <%= f.input :description %>
-      <%= f.input :fair_market_value %>
+      <%= f.input :fair_market_value, input_html: { type: "number", step: "0.01", value: "0.00" } %>
       <%= f.label :category %>
       <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, { multiple: false } %>
     </div>
