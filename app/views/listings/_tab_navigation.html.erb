@@ -1,8 +1,23 @@
+<% if current_user %>
 <div class="row" id="tabs-container">
   <ul class="tabs" data-tab>
-    <li class="tab-title"><a href="#listings-new"><i class="fa fa-plus fa-lg"></i> New Listing</a></li>
-    <li class="tab-title"><a href="#listings-index">View All Listings</a></li>
-    <li class="tab-title"><a href="#listings-donation-history">My Donations</a></li>
-    <li class="tab-title"><a href="#listings-request-history">My Requests</a></li>
+    <li class="tab-title">
+        <%= link_to new_listing_path do %>
+
+        <!-- Prefix 'New Listing' with Font Awesome plus-sign icon -->
+        <%= content_tag(:i, "", :class => "fa fa-plus fa-lg") %>
+        New Listing
+        <% end %>
+    </li>
+    <li class="tab-title">
+        <%= link_to "View All Listings", listings_path %>
+    </li>
+    <li class="tab-title">
+        <%= link_to "My Donations", user_donations_path(current_user) %>
+    </li>
+    <li class="tab-title">
+        <%= link_to "My Requests", user_requests_path(current_user) %>
+    </li>
   </ul>
 </div>
+<% end %>
