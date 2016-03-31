@@ -91,10 +91,14 @@ end
 ###
 # LISTINGS & CATEGORIES
 ###
-categories = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
+category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
+
+category_names.each do |c|
+  Category.new(name: c).save!
+end
 
 all_users = User.all.to_a
-
+categories = Category.all.to_a
 all_users.each do |u|
   3.times do
     listing = u.listings.build(
@@ -103,8 +107,7 @@ all_users.each do |u|
       fair_market_value: rand(250).abs
     )
     listing.save
-    listing.categories.build(name: categories.sample)
-    listing.save
+    listing.categories << categories.sample
   end
 end
 

@@ -10,7 +10,8 @@
             <h4><%= @listing.title %></h4>
             <p><%= @listing.description %></p>
             <p>Fair Market Value: <%= @listing.fair_market_value.to_i %> USD</p>
-            <%= link_to "Back to Listings", :back %>
+            <%= render 'listings/follow' %>
+            <%= link_to "Back to Listings", session.delete(:listings_index) %>
             <%= link_to "Request Donation", "", :class => "button", :id =>"requestbutton" %>
           </div>
         </div>
