@@ -12,7 +12,7 @@ I will put code in here specifically for forms. In the "listings/new.html.erb" w
       <%= f.input :title %>
       <%= f.input :description %>
       <%= f.input :fair_market_value %>
-      <%= f.label :category_ids %>
+      <%= f.label :category %>
       <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, { multiple: false } %>
     </div>
 

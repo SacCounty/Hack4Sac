@@ -1,20 +1,8 @@
 <%= render 'listings/tab_navigation' %>
 
 <div class="tabs-content">
-    <div class="content active" id="listings-edit">
-        <div class="row">
-          <div class="large-4 columns">
-            <img src="http://placehold.it/400x300&text=[img]">
-          </div>
+  <div class="content active" id="listings-edit">
+    <%= render 'listings/form' %>
+  </div>
 
-          <div class="large-8 columns">
-            <h4>Item Name</h4> <!--How to insert item name?-->
-            <p>Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.</p>
-            <%= render 'listings/form' %>
-            <ul class="inline-list">
-              <li><a href="#" id="edit-listing">Edit Listing</a></li>
-            </ul>
-          </div>
-        </div>
-    </div>
 </div>
