@@ -1,15 +1,9 @@
-<!--TAB PANEL START-->
-<div class="row">
-<ul class="tabs" data-tab>
-  <li class="tab-title"><a href="#panel1">View Listings</a></li>
-  <li class="tab-title"><a href="#panel2">Make a Listing</a></li>
-  <li class="tab-title active"><a href="#panel3">Request History</a></li>
-  <li class="tab-title"><a href="#panel4">My Donations</a></li>
-</ul>
+<%= render 'listings/tab_navigation' %>
+
 <div class="tabs-content">
 
 <!--TAB 3: REQUEST HISTORY-->
-<div class="content active" id="panel3">
+<div class="content active" id="listings-request-history">
 <div class="large-12 columns" id="listings-wrapper">
     <div class="row" id="request-history"> <h4>My Request History</h4></div>
     <div class="large-8 columns" id="listings-content">
