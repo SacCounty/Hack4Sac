@@ -111,8 +111,80 @@ all_users.each do |u|
   end
 end
 
+###
+# USERS
+####
+
+### DEMO ###
+ind_demo = User.new(
+  name: "Jane Smith",
+  email: "idemo@example.com",
+  password: "password",
+  password_confirmation: "password",
+  account_type: "individual"
+)
+ind_demo.save unless User.exists? ind_demo
+
+org_demo = User.new(
+  name: "Jane Smith",
+  entity_name: Faker::Company.name + " " + Faker::Company.suffix,
+  entity_license: Faker::Company.ein,
+  email: "odemo@example.com",
+  password: "password",
+  password_confirmation: "password",
+  account_type: "individual"
+)
+org_demo.save unless User.exists? org_demo
 
 
+### FAKER ###
+# Organizations
+10.times do
+  user = User.new(
+    name: Faker::Name.name,
+    entity_name: Faker::Company.name + " " + Faker::Company.suffix,
+    entity_license: Faker::Company.ein,
+    email: Faker::Internet.safe_email,
+    password: "password",
+    password_confirmation: "password",
+    account_type: "organization"
+  )
+  user.save
+  user.questionnaires.build(name: "organization").save
+end
 
+# Individuals
+10.times do
+  user = User.new(
+    name: Faker::Name.name,
+    email: Faker::Internet.safe_email,
+    password: "password",
+    password_confirmation: "password",
+    account_type: "individual"
+  )
+  user.save
+  user.questionnaires.build(name: "individual").save
+end
 
+###
+# LISTINGS & CATEGORIES
+###
+category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
 
+category_names.each do |c|
+  Category.new(name: c).save!
+end
+
+all_users = User.all.to_a
+categories = Category.all.to_a
+all_users.each do |u|
+  3.times do
+    listing = u.listings.build(
+      title: Faker::Commerce.product_name,
+      description: Faker::Lorem.paragraph,
+      fair_market_value: rand(250).abs
+    )
+    listing.save
+    listing.categories << categories.sample
+  end
+end

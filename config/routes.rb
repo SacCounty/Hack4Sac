@@ -9,20 +9,10 @@ Rails.application.routes.draw do
   post 'listings/:id/track', to: 'listings#follow', as: 'follow_listing'
   post 'listings/:id/stop_tracking', to: 'listings#unfollow', as: 'unfollow_listing'
   resources :listings
-  resources :addresses
-    get 'addresses/index'
 
-    get 'addresses/show'
-
-    get 'addresses/new'
-
-    get 'addresses/edit'
-
-    get 'addresses/create'
-
-    get 'addresses/update'
-
-    get 'addresses/destroy'
-
-
+  resources :users, only: [:show] do
+    resources :addresses
+    get '/donations', to: 'listings#donation_history'
+    get '/requests', to: 'listings#request_history'
+  end
 end
