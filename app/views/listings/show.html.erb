@@ -1,0 +1,20 @@
+<%= render 'listings/tab_navigation' %>
+
+<div class="tabs-content">
+    <div class="content active" id="listings-item">
+        <div class="row">
+          <div class="large-4 columns">
+            <img src="http://placehold.it/400x300&text=[img]">
+          </div>
+          <div class="large-8 columns">
+            <h4><%= @listing.title %></h4>
+            <p><%= @listing.description %></p>
+            <p>Fair Market Value: <%= @listing.fair_market_value.to_i %> USD</p>
+            <%= render 'listings/follow' %>
+            <%= link_to "Back to Listings", session.delete(:listings_index) %>
+            <%= link_to "Request Donation", "", :class => "button", :id =>"requestbutton" %>
+          </div>
+        </div>
+    </div>
+</div>
+

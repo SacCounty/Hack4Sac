@@ -1,0 +1,27 @@
+Congratulations, <%= @donor.name %>!
+======================================
+
+Your item "<%= listing.title %>" has garnered interest!
+
+<%= @listing.description %>
+
+
+Donee Contact Information
+-------------------------
+<% unless @donee.entity_name.empty? %>
+Entity Name: <%= @donee.entity_name %>
+<% end %>
+Name: <%= @donee.name %>
+Phone: <%= @donee.address.phone %>
+<% unless @donee.address.fax.empty? %>
+Fax: <%= @donee.address.fax %>
+<% end %>
+Email: <%= @donee.email %>
+
+
+Please contact <%= @donee.name %> at your earliest convenience!
+
+Thank You!
+
+Human Assistance Resource Exchange (HARE)
+

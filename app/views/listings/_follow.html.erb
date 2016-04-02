@@ -1,0 +1,11 @@
+<% if is_followed? @listing.id %>
+    <%= button_to [ :unfollow, @listing ] do %>
+    <% content_tag(:i, "", :class => "fa fa-eye-slash") %>
+    Un-Watch
+    <% end %>
+<% else %>
+    <%= button_to [ :follow, @listing ] do %>
+    <%= content_tag(:i, "", :class => "fa fa-eye fa-lg") %>
+    Watch
+    <% end %>
+<% end %>

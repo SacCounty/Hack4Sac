@@ -1,0 +1,5 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>We need to verify your email before we can activate your account. Please confirm your email by clicking on the the link below. This token expires in 3 days, then you will need to request another one. If you did not sign up for an account, please ignore this email.</p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

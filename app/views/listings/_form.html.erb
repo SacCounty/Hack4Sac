@@ -1,0 +1,14 @@
+<%= simple_form_for(@listing) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :title %>
+      <%= f.input :description %>
+      <%= f.input :fair_market_value, input_html: { type: "number", step: "0.01", value: "0.00" } %>
+      <%= f.label :category %>
+      <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, { multiple: false } %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+<% end %>
