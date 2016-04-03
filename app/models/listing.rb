@@ -7,7 +7,7 @@ class Listing < ActiveRecord::Base
   has_many :donation_application_trackers
 
   def get_show_image
-    listing_image = Listing.find(:params[:id]).image_url || 'http://placehold.it/400x300&text=[img]'
+    listing_image = Listing.find(params[:id]).image_url || 'http://placehold.it/400x300&text=[img]'
     listing_image
   end
 end
