@@ -1,46 +1,48 @@
 <%= render 'listings/tab_navigation' %>
 
 <div class="tabs-content">
-<!--TAB 1: VIEW LISTINGS-->
+  <!--TAB 1: VIEW LISTINGS-->
   <div class="content active" id="listings-index">
 
-<!--TAB 1: VIEW LISTINGS: Check box for item categories-->
+    <!--TAB 1: VIEW LISTINGS: Check box for item categories-->
     <% if @categories && @categories.empty? %>
-    <div class="row">
-      <div class="large-3 columns" id="listing-filters">
-          <h3>Filter by Item Category:</h3>
-          <% i ||= 0 %>
+        <div class="row">
+          <div class="large-3 columns" id="listing-filters">
+            <h3>Filter by Item Category:</h3>
+            <% i ||= 0 %>
             <% @categories.each do |c| %>
-            <% i += 1 %>
-              <div class="inline-field">
+                <% i += 1 %>
+                <div class="inline-field">
                   <input type="checkbox" id="checkbox<%= i %>">
                   <label for="checkbox<%= i %>"><%= c.name %></label>
-              </div>
+                </div>
             <% end %>
-      </div>
-    </div>
+          </div>
+        </div>
     <% end %>
 
-      <% if @listings.empty? %>
-          <div class="large-3 columns">
-              <h4>No Listings to Display</h4>
-          </div>
-      <% else %>
+    <% if @listings.empty? %>
+        <div class="large-3 columns">
+          <h4>No Listings to Display</h4>
+        </div>
+    <% else %>
         <% @listings.each do |listing| %>
-          <div class="large-3 columns" id="listings-content">
-              <figure class="listing-item">
-                <img src="http://placehold.it/100x100&text=[img]">
-              </figure>
-          </div>
+            <div class="row">
+              <div class="large-3 columns" id="listings-content">
+                <figure class="listing-item">
+                  <img src="http://placehold.it/100x100&text=[img]">
+                </figure>
+              </div>
 
-          <div class="large-6 columns">
-            <h4><%= listing.title %></h4>
-            <p><%= listing.description %></p>
-            <ul class="inline-list">
-              <li><%= link_to "See Details", listing_path(listing), :class => "view-more"%></li>
-            </ul>
-          </div>
+              <div class="large-9 medium-6 columns">
+                <h4><%= listing.title %></h4>
+                <p><%= listing.description %></p>
+                <ul class="inline-list">
+                  <li><%= link_to "See Details", listing_path(listing), :class => "view-more" %></li>
+                </ul>
+              </div>
+            </div>
         <% end %>
-      <% end %>
-    </div>
+    <% end %>
   </div>
+</div>
