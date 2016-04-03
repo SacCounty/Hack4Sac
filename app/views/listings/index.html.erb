@@ -5,7 +5,7 @@
   <div class="content active" id="listings-index">
 
     <!--TAB 1: VIEW LISTINGS: Check box for item categories-->
-    <% if @categories && @categories.empty? %>
+    <% if @categories && !@categories.empty? %>
         <div class="row">
           <div class="large-3 columns" id="listing-filters">
             <h3>Filter by Item Category:</h3>
