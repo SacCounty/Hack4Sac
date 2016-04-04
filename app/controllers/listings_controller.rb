@@ -20,6 +20,7 @@ class ListingsController < ApplicationController
   def index
     session.delete(:listings_index)
     @categories = Category.all.to_a
+    @category_filters = []
     @listings = Listing.all
   end
 
