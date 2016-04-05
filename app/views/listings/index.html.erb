@@ -16,7 +16,7 @@
                     <% category = c.name %>
                     <div class="inline-field">
                       <%= check_box_tag("categories[#{i}]", category, checked = @category_filters.include?(category), id: "checkbox#{i}") %>
-                      <%= label_tag "checkbox#{i}", category %>
+                      <%= label_tag "checkbox#{i}", category.titleize %>
                     </div>
                 <% end %>
                 <%= submit_tag("Apply Filter") %>
@@ -39,7 +39,7 @@
               </div>
 
               <div class="large-9 medium-6 columns">
-                <h4><%= listing.title %></h4>
+                <h4><%= listing.title.titleize %></h4>
                 <p><%= listing.description %></p>
                 <ul class="inline-list">
                   <li><%= link_to "See Details", listing_path(listing), :class => "view-more" %></li>
