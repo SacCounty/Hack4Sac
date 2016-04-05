@@ -10,8 +10,14 @@
             <h4><%= @listing.title %></h4>
             <p><%= @listing.description %></p>
             <p>Fair Market Value: <%= @listing.fair_market_value.to_i %> USD</p>
+            <!-- "Watch" button is inside a partial file:
+            listings/_follow.html.erb
+            -->
             <%= render 'listings/follow' %>
+            <!-- end Watch button-->
             <%= link_to "Back to Listings", session.delete(:listings_index) %>
+            <!-- the below link_to code will compile into HTML like this:
+            <a href="" class="button" id="requestbutton">Request Donation</a> -->
             <%= link_to "Request Donation", "", :class => "button", :id =>"requestbutton" %>
           </div>
         </div>
