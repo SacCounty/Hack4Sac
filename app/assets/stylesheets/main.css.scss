@@ -14,26 +14,27 @@ html, body {
 
 #request-history {
   padding: 20px;
+}
 
 #listings-content {
-float: left;
+  float: left;
 }
 
 #listings-wrapper {
-overflow: auto; /* For FF, Safari, Opera, etc */
-width: 100%; /* For IE5, IE5.5, IE6, IE7 */
+  overflow: auto; /* For FF, Safari, Opera, etc */
+  width: 100%; /* For IE5, IE5.5, IE6, IE7 */
 }
 
 #header {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 #tab-listings-index {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 #listing-item {
-    margin: 30px;
+  margin: 30px;
 }
 
 #update-info {
