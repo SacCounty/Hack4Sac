@@ -1,16 +1,13 @@
 class CategoriesController < ApplicationController
-  def show
-    session.delete(:listings_index)
-    category_filters = params[:categories].split(",")
-    @categories = Category.all.to_a
-    @listings = Listing.joins(:categories).where("name IN (?)", category_filters).to_a
-    render 'listings/index'
-  end
-
   def index
-    session.delete(:listings_index)
     @categories = Category.all.to_a
-    @listings = Listing.all.to_a
+    unless params[:categories] and
+      params[:categories].values.length != @categories.length
+        redirect_to listings_path and return
+    end
+    @category_filters = params[:categories].values
+    @listings = Listing.joins(:categories).where("name IN (?)", params[:categories].values)
+    session.delete(:listings_index)
     render 'listings/index'
   end
 end

@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160405224430) do
     t.integer  "user_id"
     t.datetime "created_at",                                               null: false
     t.datetime "updated_at",                                               null: false
+    t.string   "image_url"
   end
 
   create_table "listings_categories", force: :cascade do |t|
