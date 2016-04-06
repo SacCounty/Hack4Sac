@@ -24,10 +24,10 @@ class DonationApplicationsController < ApplicationController
   private
 
   def export_pdf
-    user_q = current_user.questionnaires.where(name: current_user.account_type).first
+    # user_q = current_user.questionnaires.where(name: current_user.account_type).first
 
     respond_to do |format|
-      format.pdf(send_file DonationApplicationPdf.new(user_questionnaire: user_q, listing: @listing).export, type: 'application/pdf')
+      format.pdf(send_file DonationApplicationPdf.new(user: current_user, listing: @listing).export, type: 'application/pdf')
     end
   end
 

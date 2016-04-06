@@ -2,50 +2,141 @@ class DonationApplicationPdf < FillablePdfForm
 
 
   def initialize(args = {})
-    @user_questionnaire = args[:user_questionnaire]
-    @user = @user_questionnaire.user
-    @user_contact = @user.addresses.first
+    @user = args[:user]
     @listing = args[:listing]
+    @user_questionnaire = Questionnaire.where(name: @user.account_type).first
+    @user_contact = @user.addresses.first
     super()
   end
 
   protected
 
   def fill_out
+    not_applicable = 'N/A' 
+
     fill :date, Date.today.to_s
 
-    # Get fields from Sac County Surplus Donation Application
-    fields = [
-      :name                  => @user.entity_name || @user.name || '',
-      :applicationDate       => :date,
-      :address               => @user_contact.street_address_1 + (@user_contact.street_address_2 ? ", #{@user_contact.street_address_2}" : '',
-      :contactName           => @user.entity_name || @user.name || '',
-      :city                  => @user_contact.city,
-      :stateZip              => @user_contact.state + ' ' + @user_contact.zip,
-      :phone                 => @user_contact.phone,
-      :fax                   => @user_contact.fax,
+    if @user.account_type == 'organization'
+      fill :name, @user.entity_name || @user.name || ''
+      fill :contact_name, @user_questionnaire.questions.find_by(question_text: 'Organization Contact Name') || ''
 
-      # Update queries to questionnaire
-      # e.g. @user_questionnaire.question.where(question_text: "").response.response_text
-      :taxExemptYes          => questions[:tax_exempt].responses.response_text.to_s.downcase == 'yes',
-      :taxExemptNo           => questions[:tax_exempt].responses.response_text.to_s.downcase != 'yes',
-      :schoolDistrictName    => questions[:school_district].responses.response_text.to_s,
-      :schoolDistrictYes     => questions[:school_district].responses.response_text.to_s.downcase == 'yes',
-      :schoolDistrictNo      => questions[:school_district].responses.response_text.to_s.downcase != 'yes',
-      :specialDistrictName   => questions[:special_district].responses.response_text.to_s,
-      :specialDistrictYes    => questions[:special_district].responses.response_text.to_s.downcase == 'yes',
-      :specialDistrictNo     => questions[:special_district].responses.response_text.to_s.downcase != 'yes',
-      :publicBenefitsYes     => questions[:public_benefits].responses.response_text.to_s.downcase == 'yes',
-      :publicBenefitsNo      => questions[:public_benefits].responses.response_text.to_s.downcase != 'yes',
-      :donationRequest       => "(##{@listing.id}) " + @listing.description,
-      :applicantName         => @user.name,
-      :signDate              => :date,
-      :title                 => @user_questionnaire.questions.where(question_text: 'Title').responses.response_text.to_s,
-    ]
+      fill :public_benefits_no, 'No'
+      fill :public_benefits_yes, 'Off'
 
-    fields.each do |field_name, record_contents|
-      fill field_name, @user_questionnaire.send(record_contents)
+      fill :tax_exempt_no, case @user_questionnaire.questions.find_by(question_text: 'Are you exempt from taxation pursuant to 26 U.S.C 501 ( c )(3)?').response.response_text.to_s.downcase
+                             when nil then
+                               'Off'
+                             when 'Yes' then
+                               'Off'
+                             else
+                               'No'
+                           end
+
+      fill :tax_exempt_yes, case @user_questionnaire.questions.find_by(question_text: 'Are you exempt from taxation pursuant to 26 U.S.C 501 ( c )(3)?').response.response_text.to_s.downcase
+                              when nil then
+                                'Off'
+                              when 'No' then
+                                'Off'
+                              else
+                                'Yes'
+                            end
+
+      fill :school_district_name, case @user_questionnaire.questions.find_by(question_text: 'School District Name').response.response_text
+                                    when nil then
+                                      'N/A'
+                                    else
+                                      @user_questionnaire.questions.find_by(question_text: 'School District Name').response.response_text
+                                  end
+
+      fill :school_district_no, case @user_questionnaire.questions.find_by(question_text: 'Are you a School District?').response.response_text.to_s.downcase
+                                  when nil then
+                                    'Off'
+                                  when 'Yes' then
+                                    'Off'
+                                  else
+                                    'No'
+                                end
+
+      fill :school_district_yes, case @user_questionnaire.questions.find_by(question_text: 'Are you a School District?').response.response_text.to_s.downcase
+                                   when nil then
+                                     'Off'
+                                   when 'No' then
+                                     'Off'
+                                   else
+                                     'Yes'
+                                 end
+
+      fill :special_district_name, case @user_questionnaire.questions.find_by(question_text: 'Special District Name').response.response_text
+                                     when nil then
+                                       'N/A'
+                                     else
+                                       @user_questionnaire.questions.find_by(question_text: 'Special District Name').response.response_text
+                                   end
+
+      fill :special_district_no, case @user_questionnaire.questions.find_by(question_text: 'Are you a Special District?').response.response_text.to_s.downcase
+                                   when nil then
+                                     'Off'
+                                   when 'Yes' then
+                                     'Off'
+                                   else
+                                     'No'
+                                 end
+
+      fill :special_district_yes, case @user_questionnaire.questions.find_by(question_text: 'Are you a Special District?').response.response_text.to_s.downcase
+                                    when nil then
+                                      'Off'
+                                    when 'No' then
+                                      'Off'
+                                    else
+                                      'Yes'
+                                  end
+
+    elsif @user.account_type == 'individual'
+      questionnaire = @user.questionnaires.where(name: 'individual')
+
+      fill :name, @user.name
+
+      [:contact_name, :school_district_name, :special_district_name].each do |field|
+        fill field, not_applicable
+      end
+
+      [:tax_exempt_no, :school_district_no, :special_district_no].each do |field|
+        fill field, 'No'
+      end
+
+      [:tax_exempt_yes, :school_district_yes, :special_district_yes].each do |field|
+        fill field, 'Off'
+      end
+
+      if @user_questionnaire.questions.find_by(question_text: 'Are you receiving CalFresh benefits?').response.response_text.to_s.downcase == 'yes' or
+          @user_questionnaire.questions.find_by(question_text: 'Are you receiving CalWORKS benefits?').response.response_text.to_s.downcase == 'yes' or
+          @user_questionnaire.questions.find_by(question_text: 'Are you receiving County Relief benefits?').response.response_text.to_s.downcase == 'yes' or
+          @user_questionnaire.questions.find_by(question_text: 'Are you receiving General Relief benefits?').response.response_text.to_s.downcase == 'yes' or
+          @user_questionnaire.questions.find_by(question_text: 'Are you receiving General Assistance benefits?').response.response_text.to_s.downcase == 'yes' or
+          @user_questionnaire.questions.find_by(question_text: 'Are you receiving MediCal benefits?').response.response_text.to_s.downcase == 'yes'
+        public_benefits_yes = 'Yes'
+        public_benefits_no = 'Off'
+      else
+        public_benefits_yes = 'Off'
+        public_benefits_no = 'No'
+      end
+
+      fill :public_benefits_no, public_benefits_no
+      fill :public_benefits_yes, public_benefits_yes
     end
+
+    fill :applicant_name, @user.name
+
+    [:sign_date, :application_date].each do |field|
+      fill field, Date.today.to_s
+    end
+
+    [:city, :phone, :fax].each do |field|
+      fill field, @user_contact.send(field)
+    end
+
+    state_zip_code = @user_contact.state.to_s + ' ' + @user_contact.zip_code.to_s
+    fill :state_zip, state_zip_code
 
     true
   end
