@@ -1,5 +1,5 @@
 class DonationApplicationPdf < FillablePdfForm
-
+  attr_accessor :user, :listing
 
   def initialize(args = {})
     @user = args[:user]
