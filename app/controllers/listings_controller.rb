@@ -26,6 +26,8 @@ class ListingsController < ApplicationController
   def show
     set_listings_index
     @listing = Listing.find(params[:id])
+    # TODO: probably should change this to if current_user.donation_applications is in listing.donation_applications
+    @has_current_request = @listing.donation_applications == current_user.donation_applications ? true : false
   end
 
   def edit

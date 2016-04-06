@@ -3,14 +3,14 @@ class DonationApplicationsController < ApplicationController
 
   def create
     @listing = Listing.find(params[:id])
-    submission_status ||= "printed" if requires_pdf_form?(@listing)
+    submission_status ||= "printed" if requires_pdf_form?
     submission_status ||= "emailed"
-    da = DonationApplication.new(applicant: current_user, listing: @listing, submission_status: submission_status)
+    donation_application = DonationApplication.new(applicant: current_user, listing: @listing, submission_status: submission_status)
 
     if donation_application.save
       @listing.followers << current_user
       # Mailer send
-      if requires_pdf_form?(@listing)
+      if requires_pdf_form?
         export_pdf and return
       end
       flash[:success] = "Your request has been #{submission_status}!"
