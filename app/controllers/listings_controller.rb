@@ -79,7 +79,7 @@ class ListingsController < ApplicationController
   private
 
   def already_requested?
-    current_user.donation_applications.where(listing: @listing).present?
+    current_user && current_user.donation_applications.where(listing: @listing).present?
   end
 
   def set_listings_index(default = listings_path )
