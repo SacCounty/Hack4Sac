@@ -1,8 +1,11 @@
 class DonationApplicationPdf < FillablePdfForm
 
-  def initialize(user_q, listing)
-    @user_q = user_q
-    @listing = listing
+
+  def initialize(args = {})
+    @user_questionnaire = args[:user_questionnaire]
+    @user = @user_questionnaire.user
+    @user_contact = @user.addresses.first
+    @listing = args[:listing]
     super()
   end
 
@@ -11,45 +14,39 @@ class DonationApplicationPdf < FillablePdfForm
   def fill_out
     fill :date, Date.today.to_s
 
-    # TODO: may have to change question texts after the database is seeded...
-    questions = [
-      'tax_exempt'        => @user_q.question.find(question_text: 'Tax Exempt'),
-      'school_district'   => @user_q.question.find(question_text: 'School District Specify'),
-      'special_district'  => @user_q.question.find(question_text: 'Special District Specify'),
-      'public_benefits'   => @user_q.question.find(question_text: 'Public Benefits'),
-    ]
-
+    # Get fields from Sac County Surplus Donation Application
     fields = [
-      # Get fields from Sac County Surplus Donation Application
-      :name                  => @user_q.entity_name.to_s.empty ? @user_q.name : @user_q.entity_name,
+      :name                  => @user.entity_name || @user.name || '',
       :applicationDate       => :date,
-      :address               => @user_q.address.street_address_1 + (@user_q.address.street_address_2.to_s.empty ? '' : @user_q.address.street_address_2),
-      :contactName           => @user_q.entity_name.to_s.empty ? '' : @user_q.entity_name,
-      :city                  => @user_q.address.city,
-      :stateZip              => @user_q.address.state + ' ' + @user_q.address.zip,
-      :phone                 => @user_q.address.phone,
-      :fax                   => @user_q.address.fax,
-      :taxExemptYes          => questions['tax_exempt'].responses.response_text.to_s.downcase == 'yes' ? true : false,
-      :taxExemptNo           => questions['tax_exempt'].responses.response_text.to_s.downcase == 'yes' ? false : true,
-      :schoolDistrictName    => questions['school_district'].responses.response_text.to_s,
-      :schoolDistrictYes     => questions['school_district'].responses.response_text.to_s.downcase == 'yes' ? true : false,
-      :schoolDistrictNo      => questions['school_district'].responses.response_text.to_s.downcase == 'yes' ? false : true,
-      :specialDistrictName   => questions['special_district'].responses.response_text.to_s,
-      :specialDistrictYes    => questions['special_district'].responses.response_text.to_s.downcase == 'yes' ? true : false,
-      :specialDistrictNo     => questions['special_district'].responses.response_text.to_s.downcase == 'yes' ? false : true,
-      :publicBenefitsYes     => questions['public_benefits'].responses.response_text.to_s.downcase == 'yes' ? true : false,
-      :publicBenefitsNo      => questions['public_benefits'].responses.response_text.to_s.downcase == 'yes' ? false : true,
-      :donationRequest       => @listing.description,
-      :applicantName         => @user_q.name,
+      :address               => @user_contact.street_address_1 + (@user_contact.street_address_2 ? ", #{@user_contact.street_address_2}" : '',
+      :contactName           => @user.entity_name || @user.name || '',
+      :city                  => @user_contact.city,
+      :stateZip              => @user_contact.state + ' ' + @user_contact.zip,
+      :phone                 => @user_contact.phone,
+      :fax                   => @user_contact.fax,
+
+      # Update queries to questionnaire
+      # e.g. @user_questionnaire.question.where(question_text: "").response.response_text
+      :taxExemptYes          => questions[:tax_exempt].responses.response_text.to_s.downcase == 'yes',
+      :taxExemptNo           => questions[:tax_exempt].responses.response_text.to_s.downcase != 'yes',
+      :schoolDistrictName    => questions[:school_district].responses.response_text.to_s,
+      :schoolDistrictYes     => questions[:school_district].responses.response_text.to_s.downcase == 'yes',
+      :schoolDistrictNo      => questions[:school_district].responses.response_text.to_s.downcase != 'yes',
+      :specialDistrictName   => questions[:special_district].responses.response_text.to_s,
+      :specialDistrictYes    => questions[:special_district].responses.response_text.to_s.downcase == 'yes',
+      :specialDistrictNo     => questions[:special_district].responses.response_text.to_s.downcase != 'yes',
+      :publicBenefitsYes     => questions[:public_benefits].responses.response_text.to_s.downcase == 'yes',
+      :publicBenefitsNo      => questions[:public_benefits].responses.response_text.to_s.downcase != 'yes',
+      :donationRequest       => "(##{@listing.id}) " + @listing.description,
+      :applicantName         => @user.name,
       :signDate              => :date,
-      :title                 => @user_q.question.find(question_text: 'Title').responses.response_text.to_s,
+      :title                 => @user_questionnaire.questions.where(question_text: 'Title').responses.response_text.to_s,
     ]
 
     fields.each do |field_name, record_contents|
-      fill field_name, @user_q.send(record_contents)
+      fill field_name, @user_questionnaire.send(record_contents)
     end
 
     true
   end
-
 end

@@ -72,7 +72,7 @@ end
     account_type: "organization"
   )
   user.save
-  user.questionnaires.build(name: "organization").save
+  user.questionnaires.build(name: user.account_type).save
 end
 
 # INDIVIDUAL ACCOUNTS
@@ -85,13 +85,13 @@ end
     account_type: "individual"
   )
   user.save
-  user.questionnaires.build(name: "individual").save
+  user.questionnaires.build(name: user.account_type).save
 end
 
 ###
 # LISTINGS & CATEGORIES
 ###
-category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
+category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers", "non-perishable foods"]
 
 category_names.each do |c|
   Category.new(name: c).save!
@@ -136,6 +136,16 @@ org_demo = User.new(
 )
 org_demo.save unless User.exists? org_demo
 
+sac_demo = User.new(
+  name: "Christine",
+  entity_name: "Sacramento County",
+  email: "saccounty@example.com",
+  password: "password",
+  password_confirmation: "password",
+  account_type: "organization"
+)
+sac_demo.save unless User.exists? sac_demo
+
 
 ### FAKER ###
 # Organizations
@@ -150,7 +160,7 @@ org_demo.save unless User.exists? org_demo
     account_type: "organization"
   )
   user.save
-  user.questionnaires.build(name: "organization").save
+  user.questionnaires.build(name: user.account_type).save
 end
 
 # Individuals
@@ -163,7 +173,7 @@ end
     account_type: "individual"
   )
   user.save
-  user.questionnaires.build(name: "individual").save
+  user.questionnaires.build(name: user.account_type).save
 end
 
 ###
@@ -187,4 +197,11 @@ all_users.each do |u|
     listing.save
     listing.categories << categories.sample
   end
+end
+
+### Sac County Listings ###
+sac = User.find_by(email: "saccounty@example.com")
+sac_listings = Listing.all.to_a
+10.times do
+  sac.listings << sac_listings.sample
 end

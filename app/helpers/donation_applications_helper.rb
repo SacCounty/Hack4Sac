@@ -1,0 +1,2 @@
+module DonationApplicationsHelper
+end
