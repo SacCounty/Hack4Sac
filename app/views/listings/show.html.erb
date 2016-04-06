@@ -23,16 +23,6 @@
             <% unless @has_current_request %>
             <%= link_to "Request Donation", create_application_path(:id => @listing.id), :class => "button", :id => "requestbutton", :method => :post %>
             <% end %>
-    <!-- Do not edit the section below -->
-    <!-- Begin Donation Application Status section displayed to Listing creators and Listing followers -->
-    <!-- Partials located in app/views/donation_application_trackers/ -->
-    <% if current_user && current_user == @listing.creator %>
-    <%= render 'donation_application_trackers/show_as_creator' %>
-    <% elsif current_user && (@listing.followers.include? current_user) %>
-    <%= render 'donation_application_trackers/show_as_follower' %>
-    <% end %>
-    <!-- End Donation Application Status section -->
-  </div>
   <!-- Do not edit the section below -->
   <!-- Begin Donation Application Status section displayed to Listing creators and Listing followers -->
   <!-- Partials located in app/views/donation_application_trackers/ -->
