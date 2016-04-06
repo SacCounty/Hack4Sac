@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401201403) do
+ActiveRecord::Schema.define(version: 20160405224430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,15 +69,15 @@ ActiveRecord::Schema.define(version: 20160401201403) do
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
 
-  create_table "donation_application_trackers", force: :cascade do |t|
-    t.integer  "user_id",                                     null: false
-    t.integer  "listing_id",                                  null: false
+  create_table "donation_applications", force: :cascade do |t|
+    t.integer  "user_id",                null: false
+    t.integer  "listing_id",             null: false
     t.datetime "submission_date"
-    t.string   "approval_status",        default: "not seen"
     t.text     "approval_status_reason"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "submission_status"
+    t.string   "approval_status"
   end
 
   create_table "followed_listings", force: :cascade do |t|
