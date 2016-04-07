@@ -1,5 +1,5 @@
 class DonationApplicationPdf < FillablePdfForm
-  attr_accessor :user, :listing
+
 
   def initialize(args = {})
     @user = args[:user]
@@ -12,7 +12,7 @@ class DonationApplicationPdf < FillablePdfForm
   protected
 
   def fill_out
-    not_applicable = 'N/A' 
+    not_applicable = 'N/A'
 
     fill :date, Date.today.to_s
 
