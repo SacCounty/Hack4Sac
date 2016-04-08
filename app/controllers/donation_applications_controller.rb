@@ -28,6 +28,11 @@ class DonationApplicationsController < ApplicationController
     send_file(pdf_form, type: 'application/pdf')
   end
 
+  def display_pdf
+    pdf_form = DonationApplicationPdf.new(user: current_user, listing: @listing).export
+    send_file(pdf_form, disposition: 'inline', type: 'application/pdf')
+  end
+
   def requires_pdf_form?
     # !Listing.find(listing_id).pdf.nil?
     @listing.creator.entity_name == "Sacramento County"
