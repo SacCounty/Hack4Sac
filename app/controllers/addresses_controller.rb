@@ -15,6 +15,11 @@ class AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(@address_params)
+  end
+
+  def edit_all
+    @addresses = current_user.addresses
   end
 
   def create
