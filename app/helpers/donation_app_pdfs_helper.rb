@@ -1,0 +1,2 @@
+module DonationAppPdfsHelper
+end

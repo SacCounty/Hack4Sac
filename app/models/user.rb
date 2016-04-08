@@ -10,5 +10,5 @@ class User < ActiveRecord::Base
   has_many :addresses, through: :users_addresses
   has_many :listings
   has_many :followed_listings
-  has_many :donation_application_trackers
+  has_many :donation_applications
 end

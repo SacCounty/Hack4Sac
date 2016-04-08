@@ -20,12 +20,14 @@ class ListingsController < ApplicationController
   def index
     session.delete(:listings_index)
     @categories = Category.all.to_a
+    @category_filters = []
     @listings = Listing.all
   end
 
   def show
     set_listings_index
     @listing = Listing.find(params[:id])
+    @has_current_request = already_requested?
   end
 
   def edit
@@ -75,6 +77,10 @@ class ListingsController < ApplicationController
   end
 
   private
+
+  def already_requested?
+    current_user && current_user.donation_applications.where(listing: @listing).present?
+  end
 
   def set_listings_index(default = listings_path )
     prev_page = request.env["HTTP_REFERER"]
