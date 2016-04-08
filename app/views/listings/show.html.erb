@@ -21,7 +21,7 @@
             <!-- the below link_to code will compile into HTML like this:
             <a href="" class="button" id="requestbutton">Request Donation</a> -->
             <% if current_user and not @has_current_request %>
-            <%= link_to "Request Donation", create_application_path(:id => @listing.id), :class => "button", :id => "requestbutton", :method => :post %>
+            <%= button_to "Request Donation", create_application_path(:id => @listing.id), :class => "button", :id => "requestbutton", :method => :post %>
             <% end %>
   <!-- Do not edit the section below -->
   <!-- Begin Donation Application Status section displayed to Listing creators and Listing followers -->

@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  post 'donation_applications/create', as: 'create_application'
 
   get 'listings/browse', to: 'categories#index'
   post 'listings/:id/track', to: 'listings#follow', as: 'follow_listing'
   post 'listings/:id/stop_tracking', to: 'listings#unfollow', as: 'unfollow_listing'
+  post 'listings/:id/donation_applications', to: 'donation_applications#create', as: 'create_application'
   resources :listings
 
   resources :users, only: [:show] do

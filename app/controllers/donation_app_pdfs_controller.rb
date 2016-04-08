@@ -6,7 +6,7 @@ class DonationAppPdfsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.pdf { send_file DonationApplicationPdf.new(@user, @listing).export, type: 'application/pdf' }
+      format.pdf { send_file DonationApplicationPdf.new(user: @user, listing: @listing).export, type: 'application/pdf' }
     end
   end
 
