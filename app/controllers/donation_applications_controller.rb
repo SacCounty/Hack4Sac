@@ -24,7 +24,8 @@ class DonationApplicationsController < ApplicationController
   private
 
   def export_pdf
-    send_file DonationApplicationPdf.new(user: current_user, listing: @listing).export, type: 'application/pdf'
+    pdf_form = DonationApplicationPdf.new(user: current_user, listing: @listing).export
+    send_file(pdf_form, type: 'application/pdf')
   end
 
   def requires_pdf_form?
