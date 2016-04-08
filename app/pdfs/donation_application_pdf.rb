@@ -4,7 +4,7 @@ class DonationApplicationPdf < FillablePdfForm
   def initialize(args = {})
     @user = args[:user]
     @listing = args[:listing]
-    @user_questionnaire = Questionnaire.where(name: @user.account_type).first
+    @user_questionnaire = Questionnaire.find_by(name: @user.account_type)
     @user_contact = @user.addresses.first
     super()
   end
