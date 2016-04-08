@@ -2,7 +2,23 @@
   <div class="large-6 medium-9 small-12 columns">
     <h1>Edit Address</h1>
 
-    <%= render 'form' %>
+    <%= simple_form_for(@address, :url => user_address_path, :method => :put) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :street_address_1 %>
+        <%= f.input :street_address_2 %>
+        <%= f.input :city %>
+        <%= f.input :state %>
+        <%= f.input :zip_code %>
+        <%= f.input :phone %>
+        <%= f.input :fax %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
 
     <%= link_to 'Back', user_addresses_path %>
 

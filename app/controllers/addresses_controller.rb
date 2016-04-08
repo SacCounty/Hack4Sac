@@ -27,6 +27,7 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
 
     if @address.save
+      current_user.addresses << @address
       redirect_to user_address_path(id: @address.id, user_id: current_user.id)
     else
       redirect_to user_addresses_path
@@ -34,10 +35,10 @@ class AddressesController < ApplicationController
   end
 
   def update
-    @address = Address.update(address_params)
+    @address = Address.find(params[:id])
 
-    if @address.save
-      redirect_to @address
+    if @address.update(address_params)
+      redirect_to user_address_path(id: @address.id, user_id: current_user.id)
     else
       redirect_to user_addresses_path
     end
@@ -60,7 +61,7 @@ class AddressesController < ApplicationController
                                       :fax)
     end
 
-    def get_address
-      @address = Address.find(params[:id])
-    end
+    # def get_address
+    #   @address = Address.find(params[:id])
+    # end
 end
