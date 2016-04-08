@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :get_address, only: [:edit, :update, :destroy]
   before_action :address_params, only: [:create, :update]
 
   def index
@@ -60,8 +59,4 @@ class AddressesController < ApplicationController
                                       :phone,
                                       :fax)
     end
-
-    # def get_address
-    #   @address = Address.find(params[:id])
-    # end
 end
