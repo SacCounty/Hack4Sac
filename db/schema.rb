@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160405224430) do
+ActiveRecord::Schema.define(version: 20160408075107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,11 +165,11 @@ ActiveRecord::Schema.define(version: 20160405224430) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "users_addresses", force: :cascade do |t|
-    t.string   "type",       default: "Mailing", null: false
     t.integer  "user_id"
     t.integer  "address_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "address_type"
   end
 
   add_index "users_addresses", ["address_id"], name: "index_users_addresses_on_address_id", using: :btree
