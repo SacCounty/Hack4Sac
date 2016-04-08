@@ -5,4 +5,9 @@ class Listing < ActiveRecord::Base
   has_many :listings_categories, dependent: :destroy
   has_many :categories, through: :listings_categories
   has_many :donation_applications
+
+  def get_show_image
+    listing_image = Listing.find(params[:id]).image_url || 'http://placehold.it/400x300&text=[img]'
+    listing_image
+  end
 end
