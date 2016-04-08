@@ -1,4 +1,4 @@
-<%= @addresses do |address| %>
+<%= @addresses.each do |address| %>
     <%= simple_form_for(address) do |f| %>
         <%= f.error_notification %>
 

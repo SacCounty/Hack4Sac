@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Addresses</h1>
+<h1>Saved Addresses</h1>
 
+<%= link_to new_user_address_path(user_id: current_user.id) do %>
+    <%= content_tag(:i, "", :class => "fa fa-plus fa-lg") %>
+    New Address
+<% end %>
 <table>
   <thead>
     <tr>
@@ -26,9 +30,9 @@
         <td><%= address.zip_code %></td>
         <td><%= address.phone %></td>
         <td><%= address.fax %></td>
-        <td><%= link_to 'Show', address %></td>
-        <td><%= link_to 'Edit', edit_address_path(address) %></td>
-        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_address_path(id: address.id, user_id: current_user.id) %></td>
+        <td><%= link_to 'Edit', edit_user_address_path(id: address.id, user_id: current_user.id) %></td>
+        <td><%= link_to 'Destroy', user_address_path(id: address.id, user_id: current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +40,3 @@
 
 <br>
 
-<%= link_to 'New Address', new_address_path %>

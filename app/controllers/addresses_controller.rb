@@ -1,13 +1,14 @@
 class AddressesController < ApplicationController
-  # TODO: Implement user-level authentication...maybe admin authentication too, if admins have access to this data
-  before_action :get_address, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  # before_action :get_address, only: [:edit, :update, :destroy]
   before_action :address_params, only: [:create, :update]
 
   def index
-    @addresses = Address.all
+    @addresses = current_user.addresses.to_a
   end
 
   def show
+    @address = Address.find(params[:id])
   end
 
   def new
@@ -15,7 +16,7 @@ class AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find(@address_params)
+    @address = Address.find(params[:id])
   end
 
   def edit_all
@@ -23,44 +24,43 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(@address_params)
+    @address = Address.new(address_params)
 
     if @address.save
-      redirect_to @address
+      redirect_to user_address_path(id: @address.id, user_id: current_user.id)
     else
-      return_to_index
+      redirect_to user_addresses_path
     end
   end
 
   def update
-    @address = Address.update(@address_params)
+    @address = Address.update(address_params)
 
     if @address.save
       redirect_to @address
     else
-      return_to_index
+      redirect_to user_addresses_path
     end
   end
 
   def destroy
-    @address = Address.destroy(params[:address])
+    current_user.addresses.find(params[:id]).delete
 
-    @address.save
-
-    return_to_index
+    redirect_to user_addresses_path
   end
 
   private
     def address_params
-      @address_params = params.require(:address).permit(:street_address_1, :street_address_2,
-                                                                :city, :state, :zip_code, :phone, :fax)
+      params.require(:address).permit(:street_address_1,
+                                      :street_address_2,
+                                      :city,
+                                      :state,
+                                      :zip_code,
+                                      :phone,
+                                      :fax)
     end
 
     def get_address
       @address = Address.find(params[:id])
-    end
-
-    def return_to_index
-      render 'addresses/index'
     end
 end
