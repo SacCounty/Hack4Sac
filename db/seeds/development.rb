@@ -22,7 +22,7 @@ demo_admin.save! unless AdminUser.where(email: demo_admin.email).exists?
 
 # ORGANIZATION ACCOUNTS
 org_qstr = Questionnaire.new(name: "organization")
-org_qstr.save! unless Questionnaire.where(name: org_qstr.name).exists?
+org_qstr.save unless Questionnaire.where(name: org_qstr.name).exists?
 
 org_q = [
 "Organization Contact Person",
@@ -35,12 +35,12 @@ org_q = [
 
 org_q.each do |question|
   q = Question.new(question_text: question, questionnaire_id: org_qstr.id)
-  q.save! unless Question.exists? q
+  q.save unless Question.exists? q
 end
 
 # INDIVIDUAL ACCOUNTS
 ind_qstr = Questionnaire.new(name: "individual")
-ind_qstr.save! unless Questionnaire.where(name: ind_qstr.name).exists?
+ind_qstr.save unless Questionnaire.where(name: ind_qstr.name).exists?
 
 ind_q = [
 "Are you receiving CalFresh benefits?",
@@ -53,7 +53,7 @@ ind_q = [
 
 ind_q.each do |question|
   q = Question.new(question_text: question, questionnaire_id: ind_qstr.id)
-  q.save! unless Question.exists? q
+  q.save unless Question.exists? q
 end
 
 ###
@@ -72,7 +72,7 @@ end
     account_type: "organization"
   )
   user.save
-  user.questionnaires.build(name: user.account_type).save
+  user.questionnaires << Questionnaire.find_by(name: user.account_type)
 end
 
 # INDIVIDUAL ACCOUNTS
@@ -85,7 +85,7 @@ end
     account_type: "individual"
   )
   user.save
-  user.questionnaires.build(name: user.account_type).save
+  user.questionnaires << Questionnaire.find_by(name: user.account_type)
 end
 
 ###
@@ -118,7 +118,7 @@ end
 ### DEMO ###
 ind_demo = User.new(
   name: "Jane Smith",
-  email: "idemo@example.com",
+  email: "ind@example.com",
   password: "password",
   password_confirmation: "password",
   account_type: "individual"
@@ -129,7 +129,7 @@ org_demo = User.new(
   name: "Jane Smith",
   entity_name: Faker::Company.name + " " + Faker::Company.suffix,
   entity_license: Faker::Company.ein,
-  email: "odemo@example.com",
+  email: "org@example.com",
   password: "password",
   password_confirmation: "password",
   account_type: "individual"
@@ -160,7 +160,7 @@ sac_demo.save unless User.exists? sac_demo
     account_type: "organization"
   )
   user.save
-  user.questionnaires.build(name: user.account_type).save
+  user.questionnaires << Questionnaire.find_by(name: user.account_type)
 end
 
 # Individuals
@@ -173,7 +173,7 @@ end
     account_type: "individual"
   )
   user.save
-  user.questionnaires.build(name: user.account_type).save
+  user.questionnaires << Questionnaire.find_by(name: user.account_type)
 end
 
 ###

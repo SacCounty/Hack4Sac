@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408075107) do
+ActiveRecord::Schema.define(version: 20160409215451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 20160408075107) do
     t.string   "zip_code"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.string   "phone"
-    t.string   "fax"
+    t.string   "address_type"
+    t.integer  "user_id"
   end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -68,6 +70,21 @@ ActiveRecord::Schema.define(version: 20160408075107) do
   end
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
+
+  create_table "contact_infos", force: :cascade do |t|
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.string   "title"
+    t.string   "phone",      null: false
+    t.string   "extension"
+    t.string   "fax"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "primary"
+  end
+
+  add_index "contact_infos", ["user_id"], name: "index_contact_infos_on_user_id", using: :btree
 
   create_table "donation_applications", force: :cascade do |t|
     t.integer  "user_id",                null: false
@@ -153,7 +170,6 @@ ActiveRecord::Schema.define(version: 20160408075107) do
     t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "name"
     t.string   "entity_name"
     t.string   "entity_license"
     t.string   "account_type"
@@ -163,17 +179,6 @@ ActiveRecord::Schema.define(version: 20160408075107) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "users_addresses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "address_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "address_type"
-  end
-
-  add_index "users_addresses", ["address_id"], name: "index_users_addresses_on_address_id", using: :btree
-  add_index "users_addresses", ["user_id"], name: "index_users_addresses_on_user_id", using: :btree
 
   create_table "users_questionnaires", force: :cascade do |t|
     t.integer  "user_id"

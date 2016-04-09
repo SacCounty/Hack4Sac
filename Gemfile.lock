@@ -1,4 +1,21 @@
 GIT
+  remote: git://github.com/DavyJonesLocker/client_side_validations-simple_form.git
+  revision: f9b38766643646c6879b8fe1526ea27dd9cbeb5f
+  specs:
+    client_side_validations-simple_form (3.2.3)
+      client_side_validations (~> 4.2.3)
+      simple_form (~> 3.2)
+
+GIT
+  remote: git://github.com/DavyJonesLocker/client_side_validations.git
+  revision: f819f7c769d3876fe00926301a037dae28276ed1
+  specs:
+    client_side_validations (4.2.3)
+      jquery-rails (>= 3.1.2, < 5.0.0)
+      js_regex (~> 1.0, >= 1.0.9)
+      rails (>= 4.0.0, < 4.3.0)
+
+GIT
   remote: git://github.com/activeadmin/activeadmin.git
   revision: 2635bdb2bc37f3eb103d5ba6dee16b2c7e4da2a6
   specs:
@@ -150,6 +167,8 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
+    js_regex (1.0.13)
+      regexp_parser (= 0.3.2)
     json (1.8.3)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -254,6 +273,7 @@ GEM
     rdoc (4.2.2)
       json (~> 1.4)
     ref (2.0.0)
+    regexp_parser (0.3.2)
     responders (2.1.1)
       railties (>= 4.2.0, < 5.1)
     safe_shell (1.0.3)
@@ -313,6 +333,8 @@ DEPENDENCIES
   activeadmin!
   awesome_print
   better_errors
+  client_side_validations!
+  client_side_validations-simple_form!
   coffee-rails (~> 4.1.0)
   devise
   faker

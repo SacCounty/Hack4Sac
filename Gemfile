@@ -15,9 +15,12 @@ gem 'figaro', '>= 1.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'pdf-forms'
 gem 'mail_form', '~> 1.5.1'
 gem 'simple_form', '~> 3.2.0'
-gem 'pdf-forms'
+# Fixes SimpleForm issues with Rails > 4.0
+gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
+gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_validations-simple_form'
 
 # activeadmin >= 1.0.0 is still under development
 # but required for Rails 4 and above

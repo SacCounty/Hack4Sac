@@ -2,9 +2,7 @@
 <ul>
   </li>
   <% if user_signed_in? %>
-      <li><%= link_to "My Profile", edit_user_registration_path, :class => "" %>
-      <li>
-        <%= link_to "My Addresses", user_addresses_path(user_id: current_user.id), :class => "" %>
+      <li><%= link_to "My Profile", user_path(current_user), :class => "" %>
       </li>
       <!-- menu items from tabs for small screens -->
       <li class="show-for-small-only">

@@ -1,0 +1,29 @@
+<h3>Contact Information</h3>
+<table class="columns large-12">
+  <thead>
+    <tr>
+      <th>Primary?</th>
+      <th>Contact Person</th>
+      <th>Job Title</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+<% unless @contacts.empty? %>
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <% primary = contact.primary ? "yes" : "no" %>
+      <tr>
+        <td><%= primary.titleize %></td>
+        <td><%= "#{contact.first_name} #{contact.last_name}".titleize %></td>
+        <td><%= "#{contact.title}".titleize %></td>
+        <td><%= "#{contact.phone}" %></td>
+        <td><%= "#{contact.fax }" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<%= render 'addresses/index' %>
