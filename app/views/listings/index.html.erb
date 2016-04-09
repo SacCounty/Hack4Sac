@@ -32,10 +32,9 @@
                 <div class="row listings__listing">
                   <div class="small-4 columns">
                     <figure class="listing-item">
-                      <img src="http://placehold.it/100x100&text=[img]">
+                      <img src="<%= listing.get_show_image %>">
                     </figure>
                   </div>
-
                   <div class="small-8 columns">
                     <h4><%= listing.title.titleize %></h4>
                     <p><%= listing.description %></p>
