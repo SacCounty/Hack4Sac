@@ -1,4 +1,3 @@
-<h3>Saved Addresses</h3>
 <%= link_to new_user_address_path(user_id: current_user.id) do %>
     <%= content_tag(:i, "", :class => "fa fa-plus fa-lg") %>
     New Address
@@ -12,8 +11,6 @@
       <th>City</th>
       <th>State</th>
       <th>Zip Code</th>
-      <th>Phone</th>
-      <th>Fax</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,8 +24,6 @@
         <td><%= address.city.titleize %></td>
         <td><%= address.state.titleize %></td>
         <td><%= address.zip_code.titleize %></td>
-        <td><%= address.phone.titleize %></td>
-        <td><%= address.fax.titleize %></td>
         <td><%= link_to 'Edit', edit_user_address_path(id: address.id, user_id: current_user.id) %></td>
         <td><%= link_to 'Remove', user_address_path(id: address.id, user_id: current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

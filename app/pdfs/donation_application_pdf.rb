@@ -1,11 +1,12 @@
 class DonationApplicationPdf < FillablePdfForm
 
-
   def initialize(args = {})
     @user = args[:user]
     @listing = args[:listing]
     @user_questionnaire = Questionnaire.find_by(name: @user.account_type)
-    @user_contact = @user.addresses.first
+    @address = @user.addresses.first || {}
+    @contact = @user.contact_infos.find_by(primary: true) || {}
+    @contact_name = "#{@contact[:first_name]} #{@contact[:last_name]}"
     super()
   end
 
@@ -16,9 +17,9 @@ class DonationApplicationPdf < FillablePdfForm
 
     fill :date, Date.today.to_s
 
-    if @user.account_type == 'organization'
-      fill :name, @user.entity_name || @user.name || ''
-      fill :contact_name, @user_questionnaire.questions.find_by(question_text: 'Organization Contact Name') || ''
+    if @user.account_type.downcase == 'organization'
+      fill :name, @user.entity_name || @contact_name || ''
+      fill :contact_name, @user_questionnaire.questions.find_by(question_text: 'Organization Contact Name') || @contact_name || ''
 
       fill :public_benefits_no, 'No'
       fill :public_benefits_yes, 'Off'
@@ -91,10 +92,9 @@ class DonationApplicationPdf < FillablePdfForm
                                       'Yes'
                                   end
 
-    elsif @user.account_type == 'individual'
-      questionnaire = @user.questionnaires.where(name: 'individual')
+    elsif @user.account_type.downcase == 'individual'
 
-      fill :name, @user.name
+      fill :name, @contact_name
 
       [:contact_name, :school_district_name, :special_district_name].each do |field|
         fill field, not_applicable
@@ -125,17 +125,19 @@ class DonationApplicationPdf < FillablePdfForm
       fill :public_benefits_yes, public_benefits_yes
     end
 
-    fill :applicant_name, @user.name
+    fill :applicant_name, @contact_name
 
     [:sign_date, :application_date].each do |field|
       fill field, Date.today.to_s
     end
 
-    [:city, :phone, :fax].each do |field|
-      fill field, @user_contact.send(field)
+    fill :city, @address[:city].to_s
+
+    [:phone, :fax].each do |field|
+      fill field, @contact.send(field)
     end
 
-    state_zip_code = @user_contact.state.to_s + ' ' + @user_contact.zip_code.to_s
+    state_zip_code = @address[:state].to_s + ' ' + @address[:zip_code].to_s
     fill :state_zip, state_zip_code
 
     true

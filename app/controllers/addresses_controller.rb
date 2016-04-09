@@ -55,8 +55,6 @@ class AddressesController < ApplicationController
                                       :city,
                                       :state,
                                       :zip_code,
-                                      :phone,
-                                      :fax,
                                       :address_type)
     end
 end
