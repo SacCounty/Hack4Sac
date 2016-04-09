@@ -1,0 +1,21 @@
+<h3>Account Settings</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Account Type</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <tr>
+        <td><%= @user.account_type.titleize %></td>
+        <td><%= @user.name.titleize %></td>
+        <td><%= @user.email.downcase %></td>
+        <td><%= link_to "Change Email/Password", edit_user_registration_path %></td>
+      </tr>
+  </tbody>
+</table>
+<%= link_to "Delete Account", edit_user_registration_path %>
