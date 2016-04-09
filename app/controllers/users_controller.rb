@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user && (current_user == @user)
       @addresses = current_user.addresses
+      @contacts = current_user.contact_infos
       @questionnaire = Questionnaire.find_by(name: current_user.account_type)
 
       # TODO Refactor N+1 query for response

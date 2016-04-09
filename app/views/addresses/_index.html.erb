@@ -2,12 +2,12 @@
     <%= content_tag(:i, "", :class => "fa fa-plus fa-lg") %>
     New Address
 <% end %>
-<table>
+<table class="columns large-12">
   <thead>
     <tr>
       <th>Location Type</th>
-      <th>Street Address 1</th>
-      <th>Street Address 2</th>
+      <th>Address</th>
+      <th>Address Line 2</th>
       <th>City</th>
       <th>State</th>
       <th>Zip Code</th>
@@ -15,18 +15,21 @@
     </tr>
   </thead>
 
+<% unless @addresses.empty? %>
   <tbody>
     <% @addresses.each do |address| %>
       <tr>
-        <td><%= address.address_type.titleize %></td>
-        <td><%= address.street_address_1.titleize %></td>
-        <td><%= address.street_address_2.titleize %></td>
-        <td><%= address.city.titleize %></td>
-        <td><%= address.state.titleize %></td>
-        <td><%= address.zip_code.titleize %></td>
+        <td><%= "#{address.address_type}".titleize %></td>
+        <td><%= "#{address.street_address_1}".titleize %></td>
+        <td><%= "#{address.street_address_2}".titleize %></td>
+        <td><%= "#{address.city}".titleize %></td>
+        <td><%= "#{address.state}".titleize %></td>
+        <td><%= "#{address.zip_code}".titleize %></td>
         <td><%= link_to 'Edit', edit_user_address_path(id: address.id, user_id: current_user.id) %></td>
         <td><%= link_to 'Remove', user_address_path(id: address.id, user_id: current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
+<% end %>
 </table>
+
