@@ -1,9 +1,8 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :address_params, only: [:create, :update]
 
   def index
-    @addresses = current_user.addresses.to_a
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -29,7 +28,7 @@ class AddressesController < ApplicationController
       current_user.addresses << @address
       redirect_to user_address_path(id: @address.id, user_id: current_user.id)
     else
-      redirect_to user_addresses_path
+      redirect_to user_path(current_user)
     end
   end
 
@@ -37,16 +36,16 @@ class AddressesController < ApplicationController
     @address = Address.find(params[:id])
 
     if @address.update(address_params)
-      redirect_to user_address_path(id: @address.id, user_id: current_user.id)
+      redirect_to user_path(current_user)
     else
-      redirect_to user_addresses_path
+      redirect_to user_path(current_user)
     end
   end
 
   def destroy
     current_user.addresses.find(params[:id]).delete
 
-    redirect_to user_addresses_path
+    redirect_to user_path(current_user)
   end
 
   private
@@ -57,6 +56,7 @@ class AddressesController < ApplicationController
                                       :state,
                                       :zip_code,
                                       :phone,
-                                      :fax)
+                                      :fax,
+                                      :address_type)
     end
 end
