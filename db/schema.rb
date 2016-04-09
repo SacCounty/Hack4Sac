@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408075107) do
+ActiveRecord::Schema.define(version: 20160409060600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,11 @@ ActiveRecord::Schema.define(version: 20160408075107) do
     t.datetime "updated_at",       null: false
     t.string   "phone"
     t.string   "fax"
+    t.string   "address_type"
+    t.integer  "user_id"
   end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -163,17 +167,6 @@ ActiveRecord::Schema.define(version: 20160408075107) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "users_addresses", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "address_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "address_type"
-  end
-
-  add_index "users_addresses", ["address_id"], name: "index_users_addresses_on_address_id", using: :btree
-  add_index "users_addresses", ["user_id"], name: "index_users_addresses_on_user_id", using: :btree
 
   create_table "users_questionnaires", force: :cascade do |t|
     t.integer  "user_id"
