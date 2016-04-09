@@ -6,8 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :users_questionnaires, dependent: :destroy
   has_many :questionnaires, through: :users_questionnaires
-  has_many :users_addresses, dependent: :destroy
-  has_many :addresses, through: :users_addresses
+  has_many :addresses, dependent: :destroy
   has_many :listings
   has_many :followed_listings, dependent: :destroy
   has_many :donation_applications, dependent: :destroy
