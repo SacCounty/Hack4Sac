@@ -1,0 +1,22 @@
+<h3>Eligibility Questions For Donation Application</h3>
+    <p>Your answers to this eligibility questionnaire are used to automatically fill out donation application forms that must be submitted to the contact person for a donation listing. Otherwise, you may be required to print and manually fill out a new form for each listing.</p>
+    
+<%= link_to "Update Answers", edit_user_questionnaire_path(user_id: current_user.id, id: @questionnaire.id) %>
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Response</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @application_questionnaire_responses.each do |question, response| %>
+      <tr>
+        <td><%= question %></td>
+        <td><%= response.titleize %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
