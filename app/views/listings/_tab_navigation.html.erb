@@ -1,25 +1,25 @@
 <% if current_user %>
-    <div class="hide-for-small-only">
-      <div class="row" id="tabs-container">
-        <ul class="tabs" data-tabs id="login-tabs">
-          <li class="tab-title">
+    <div class="hide-for-small-only sub-nav-bg">
+      <div class="row">
+        <dl class="sub-nav columns small-12">
+          <dd>
             <%= link_to new_listing_path do %>
 
                 <!-- Prefix 'New Listing' with Font Awesome plus-sign icon -->
-                <%= content_tag(:i, "", :class => "fa fa-plus fa-lg") %>
                 New Listing
+                <%= content_tag(:i, "", :class => "fa fa-plus") %>
             <% end %>
-          </li>
-          <li class="tab-title">
+          </dd>
+          <dd>
             <%= link_to "View All Listings", listings_path %>
-          </li>
-          <li class="tab-title">
+          </dd>
+          <dd>
             <%= link_to "My Donations", user_donations_path(current_user) %>
-          </li>
-          <li class="tab-title">
+          </dd>
+          <dd>
             <%= link_to "My Requests", user_requests_path(current_user) %>
-          </li>
-        </ul>
+          </dd>
+        </dl>
       </div>
     </div>
     <!-- Display small-screen menu in nav bar drop-down -->

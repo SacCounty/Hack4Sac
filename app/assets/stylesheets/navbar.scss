@@ -1,0 +1,26 @@
+.top-bar {
+  box-shadow: 2px solid $sac-dark-orange;
+}
+
+
+.sub-nav-bg {
+  background-color: $sac-gray;
+  margin-bottom: 15px;
+}
+
+.sub-nav {
+  background-color: $sac-gray;
+  font-weight: lighter;
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  dd {
+    margin-left: 0;
+    margin-right: 1.5rem;
+
+    a {
+      padding-left: 0;
+      padding-right: 1rem;
+    }
+  }
+}
