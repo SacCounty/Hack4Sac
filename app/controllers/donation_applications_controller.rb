@@ -31,6 +31,19 @@ class DonationApplicationsController < ApplicationController
     display_pdf
   end
 
+  def update_mailed_submission
+    listing = Listing.find(params[:listing_id])
+    donation_application = current_user.donation_applications.find_by(listing: listing)
+
+    if donation_application.update_attributes(submission_status: "mailed", submission_date: Time.now)
+      flash[:success] = "Your submission status has been updated"
+    else
+      flash[:danger] = "Your request was unsuccessful, please try again"
+    end
+
+    redirect_to listing_path(listing)
+  end
+
   private
 
   def donation_application_params

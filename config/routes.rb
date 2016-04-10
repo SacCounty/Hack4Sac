@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :listings do
     post 'donation_applications', to: 'donation_applications#create'
     get 'donation_application', to: 'donation_applications#show'
+    post 'mailed_submission', to: 'donation_applications#update_mailed_submission', as: 'update_submission'
   end
 
   resources :users, only: [:show] do

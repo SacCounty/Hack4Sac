@@ -24,13 +24,13 @@
           <div class="small-3 column">
               <%= link_to "Back to Listings", session.delete(:listings_index) %>
           </div>
+        </div>
+      </div>
           <% if current_user && current_user == @listing.creator %>
           <%= render 'donation_application_trackers/show_as_creator' %>
           <% elsif current_user && current_user.donation_applications.find_by(listing: @listing) %>
           <%= render 'donation_application_trackers/show_as_applicant' %>
           <% end %>
-        </div>
-      </div>
     </div>
   </div>
 </div>
