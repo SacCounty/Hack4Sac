@@ -24,28 +24,29 @@
         </div>
       <% end %>
 
-    <% if @listings.empty? %>
-        <div class="large-12 columns">
-          <h4>No Listings to Display</h4>
-        </div>
-    <% else %>
-        <% @listings.each do |listing| %>
-            <div class="row">
-              <div class="small-3 columns" id="listings-content">
-                <figure class="listing-item">
-                  <img src="http://placehold.it/100x100&text=[img]">
-                </figure>
-              </div>
+      <div class="small-<% if @categories && !@categories.empty? %>9<% else %>10 small-offset-1<% end %>  columns listings">
+        <% if @listings.empty? %>
+            <h4>No Listings to Display</h4>
+        <% else %>
+            <% @listings.each do |listing| %>
+                <div class="row listings__listing">
+                  <div class="small-4 columns">
+                    <figure class="listing-item">
+                      <img src="http://placehold.it/100x100&text=[img]">
+                    </figure>
+                  </div>
 
-              <div class="small-9 columns">
-                <h4><%= listing.title.titleize %></h4>
-                <p><%= listing.description %></p>
-                <ul class="inline-list">
-                  <li><%= link_to "See Details", listing_path(listing), :class => "view-more" %></li>
-                </ul>
-              </div>
-            </div>
+                  <div class="small-8 columns">
+                    <h4><%= listing.title.titleize %></h4>
+                    <p><%= listing.description %></p>
+                    <ul class="inline-list">
+                      <li><%= link_to "See Details", listing_path(listing), :class => "view-more" %></li>
+                    </ul>
+                  </div>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
+      </div>
+    </div>
   </div>
 </div>
