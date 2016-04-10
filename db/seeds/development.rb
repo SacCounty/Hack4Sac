@@ -89,7 +89,7 @@ end
 ###
 # LISTINGS & CATEGORIES
 ###
-category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers", "non-perishable foods"]
+category_names = ["furniture", "hygiene", "vehicle", "clothing", "school/office supplies", "computers", "non-perishable foods"]
 
 category_names.each do |c|
   Category.new(name: c).save!
@@ -172,7 +172,7 @@ end
 ###
 # LISTINGS & CATEGORIES
 ###
-category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
+category_names = ["furniture", "hygiene", "vehicle", "clothing", "school/office supplies", "computers"]
 
 category_names.each do |c|
   Category.new(name: c).save!
