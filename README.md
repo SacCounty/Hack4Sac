@@ -14,6 +14,7 @@ The mission of HARE is to break down the siloes between departments and organiza
 ### Team Members
 - Christine, christine@hax.help
 - Erik, erik@hax.help
+- Neal, neal@hax.help
 - Joanne, joanne@hax.help
 - Koni, koni@hax.help
 
