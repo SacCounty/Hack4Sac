@@ -9,4 +9,9 @@ class Listing < ActiveRecord::Base
   def get_show_image
     self.image_url || 'http://placehold.it/400x300&text=[img]'
   end
+
+  def requires_pdf_form?
+    # !self.pdf.nil?
+    self.creator.entity_name == "Sacramento County"
+  end
 end

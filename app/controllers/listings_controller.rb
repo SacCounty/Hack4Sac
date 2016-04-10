@@ -1,9 +1,10 @@
 class ListingsController < ApplicationController
+  include ListingsHelper
+  include DonationApplicationsHelper
   before_action :authenticate_user!, except: [:index, :show]
 
   def new
     @listing = Listing.new
-    @listing.categories.build
   end
 
   def create
@@ -27,7 +28,6 @@ class ListingsController < ApplicationController
   def show
     set_listings_index
     @listing = Listing.find(params[:id])
-    @has_current_request = already_requested?
   end
 
   def edit
@@ -77,10 +77,6 @@ class ListingsController < ApplicationController
   end
 
   private
-
-  def already_requested?
-    current_user && current_user.donation_applications.where(listing: @listing).present?
-  end
 
   def set_listings_index(default = listings_path )
     prev_page = request.env["HTTP_REFERER"]

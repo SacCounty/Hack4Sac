@@ -1,16 +1,17 @@
 class DonationApplicationsController < ApplicationController
+  include DonationApplicationsHelper
   before_action :authenticate_user!
 
   def create
-    @listing = Listing.find(params[:id])
-    submission_status ||= "printed" if requires_pdf_form?
+    @listing = Listing.find(params[:listing_id])
+    submission_status ||= "printed" if @listing.requires_pdf_form?
     submission_status ||= "emailed"
     donation_application = DonationApplication.new(applicant: current_user, listing: @listing, submission_status: submission_status)
 
     if donation_application.save
       @listing.followers << current_user
       # Mailer send
-      if requires_pdf_form?
+      if @listing.requires_pdf_form?
         export_pdf and return
       end
       flash[:success] = "Your request has been #{submission_status}!"
@@ -21,21 +22,6 @@ class DonationApplicationsController < ApplicationController
     redirect_to listing_path(@listing)
   end
 
-  private
-
-  def export_pdf
-    pdf_form = DonationApplicationPdf.new(user: current_user, listing: @listing).export
-    send_file(pdf_form, type: 'application/pdf')
-  end
-
-  def display_pdf
-    pdf_form = DonationApplicationPdf.new(user: current_user, listing: @listing).export
-    send_file(pdf_form, disposition: 'inline', type: 'application/pdf')
-  end
-
-  def requires_pdf_form?
-    # !Listing.find(listing_id).pdf.nil?
-    @listing.creator.entity_name == "Sacramento County"
   end
 
   private
