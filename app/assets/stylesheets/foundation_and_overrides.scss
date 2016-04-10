@@ -1412,7 +1412,7 @@ $sub-nav-padding: rem-calc(7.5 16);
 
 // Background color for the top bar
 // $topbar-bg-color: $oil;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg: $sac-orange;
 
 // Height and margin
 // $topbar-height: rem-calc(45);
@@ -1423,15 +1423,15 @@ $sub-nav-padding: rem-calc(7.5 16);
 // $topbar-title-font-size: rem-calc(17);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $white;
-// $topbar-link-color-hover: $white;
-// $topbar-link-color-active: $white;
-// $topbar-link-color-active-hover: $white;
-// $topbar-link-weight: $font-weight-normal;
+$topbar-link-color: $white;
+$topbar-link-color-hover: $white;
+$topbar-link-color-active: $white;
+$topbar-link-color-active-hover: $white;
+$topbar-link-weight: $font-weight-bold;
 // $topbar-link-font-size: rem-calc(13);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
-// $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-hover: $jet;
+$topbar-link-bg: $sac-orange;
+$topbar-link-bg-hover: $sac-dark-orange;
 // $topbar-link-bg-color-hover: $charcoal;
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
