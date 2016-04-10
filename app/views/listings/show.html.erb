@@ -17,8 +17,8 @@
               <%= render 'listings/follow' %>
           </div>
           <div class="small-5 column">
-              <% if current_user and not @has_current_request %>
-                <%= button_to "Request Donation", create_application_path(:id => @listing.id), :class => "button", :id => "requestbutton", :method => :post %>
+              <% if current_user and not already_requested? %>
+                <%= button_to "Request Donation", listing_donation_applications_path(listing_id: @listing.id), :class => "button", :id => "requestbutton", :method => :post %>
               <% end %>
           </div>
           <div class="small-3 column">
