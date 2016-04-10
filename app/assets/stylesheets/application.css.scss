@@ -1,5 +1,13 @@
 @import "font-awesome";
 @import 'foundation_and_overrides';
+
+@import 'header',
+        'navbar',
+        'button';
+
+@import 'listings';
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -15,7 +23,5 @@
  *= require normalize-rails
  *= require_self
  *= require_tree .
- //= require foundation_and_overrides
- //= require main
 
  */

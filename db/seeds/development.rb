@@ -63,7 +63,6 @@ end
 # ORGANIZATION ACCOUNTS
 10.times do
   user = User.new(
-    name: Faker::Name.name,
     entity_name: Faker::Company.name + " " + Faker::Company.suffix,
     entity_license: Faker::Company.ein,
     email: Faker::Internet.safe_email,
@@ -78,7 +77,6 @@ end
 # INDIVIDUAL ACCOUNTS
 10.times do
   user = User.new(
-    name: Faker::Name.name,
     email: Faker::Internet.safe_email,
     password: "password",
     password_confirmation: "password",
@@ -91,7 +89,7 @@ end
 ###
 # LISTINGS & CATEGORIES
 ###
-category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers", "non-perishable foods"]
+category_names = ["furniture", "hygiene", "vehicle", "clothing", "school/office supplies", "computers", "non-perishable foods"]
 
 category_names.each do |c|
   Category.new(name: c).save!
@@ -117,7 +115,6 @@ end
 
 ### DEMO ###
 ind_demo = User.new(
-  name: "Jane Smith",
   email: "ind@example.com",
   password: "password",
   password_confirmation: "password",
@@ -126,7 +123,6 @@ ind_demo = User.new(
 ind_demo.save unless User.exists? ind_demo
 
 org_demo = User.new(
-  name: "Jane Smith",
   entity_name: Faker::Company.name + " " + Faker::Company.suffix,
   entity_license: Faker::Company.ein,
   email: "org@example.com",
@@ -137,7 +133,6 @@ org_demo = User.new(
 org_demo.save unless User.exists? org_demo
 
 sac_demo = User.new(
-  name: "Christine",
   entity_name: "Sacramento County",
   email: "saccounty@example.com",
   password: "password",
@@ -151,7 +146,6 @@ sac_demo.save unless User.exists? sac_demo
 # Organizations
 10.times do
   user = User.new(
-    name: Faker::Name.name,
     entity_name: Faker::Company.name + " " + Faker::Company.suffix,
     entity_license: Faker::Company.ein,
     email: Faker::Internet.safe_email,
@@ -166,7 +160,6 @@ end
 # Individuals
 10.times do
   user = User.new(
-    name: Faker::Name.name,
     email: Faker::Internet.safe_email,
     password: "password",
     password_confirmation: "password",
@@ -179,7 +172,7 @@ end
 ###
 # LISTINGS & CATEGORIES
 ###
-category_names = ["furniture", "hygeine", "vehicle", "clothing", "school/office supplies", "computers"]
+category_names = ["furniture", "hygiene", "vehicle", "clothing", "school/office supplies", "computers"]
 
 category_names.each do |c|
   Category.new(name: c).save!
