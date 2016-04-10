@@ -6,13 +6,18 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
+        <%= f.input :address_type,
+                    :collection => [["mailing", "Mailing Address"], ["physical", "Physical Address"]],
+                    :as => :radio_buttons,
+                    :label_method => :last,
+                    :value_method => :first,
+                    :required => true
+        %>
         <%= f.input :street_address_1 %>
         <%= f.input :street_address_2 %>
         <%= f.input :city %>
         <%= f.input :state %>
         <%= f.input :zip_code %>
-        <%= f.input :phone %>
-        <%= f.input :fax %>
       </div>
 
       <div class="form-actions">
