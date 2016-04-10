@@ -140,7 +140,7 @@ class DonationApplicationPdf < FillablePdfForm
 
       object_in.attributes.each do |k, v|
         if v.nil?
-          v = 'N/A'
+          v = ''
         end
 
         object_in.send("#{k}=", v)
