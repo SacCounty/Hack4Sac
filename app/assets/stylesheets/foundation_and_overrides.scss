@@ -1250,16 +1250,16 @@ $button-radius: $global-radius;
 // $include-html-nav-classes: $include-html-classes;
 
 // We use these to control margin and padding
-// $sub-nav-list-margin: rem-calc(-4 0 18);
+$sub-nav-list-margin: 0;
 // $sub-nav-list-padding-top: rem-calc(4);
 
 // We use this to control the definition
 // $sub-nav-font-family: $body-font-family;
 // $sub-nav-font-size: rem-calc(14);
 // $sub-nav-font-color: $aluminum;
-// $sub-nav-font-weight: $font-weight-normal;
+$sub-nav-font-weight: lighter;
 // $sub-nav-text-decoration: none;
-// $sub-nav-padding: rem-calc(3 16);
+$sub-nav-padding: rem-calc(7.5 16);
 // $sub-nav-border-radius: 3px;
 // $sub-nav-font-color-hover: scale-color($sub-nav-font-color, $lightness: -25%);
 
