@@ -20,7 +20,7 @@
         <td><%= date_format(@follower_application.submission_date) %></td>
         <td>
         <% if @listing.requires_pdf_form? && @follower_application.submission_date.nil? %>
-        <%= link_to "Did You Mail Your Request?", listing_update_submission_path(@listing), method: :post %>
+        <%= link_to "Click Here If Request Mailed", listing_update_submission_path(@listing), method: :post %>
         <% else %>
         <%= "#{@follower_application.submission_status}".titleize %>
         <% end %>
