@@ -49,6 +49,12 @@ class ListingsController < ApplicationController
   end
 
   def request_history
+    donation_applications = current_user.donation_applications.to_a
+    @listings = donation_applications.map { |l| l = l.listing }
+    render 'listings/index'
+  end
+
+  def follow_history
     followed_listings = current_user.followed_listings.to_a
     @listings = followed_listings.map { |l| l = l.listing }
     render 'listings/index'

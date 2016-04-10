@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :addresses
     get '/donations', to: 'listings#donation_history'
     get '/requests', to: 'listings#request_history'
+    get '/watched_listings', to: 'listings#follow_history'
   end
 end
