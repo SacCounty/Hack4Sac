@@ -28,6 +28,8 @@ class ListingsController < ApplicationController
   def show
     set_listings_index
     @listing = Listing.find(params[:id])
+    @follower_application = current_user.donation_applications.find_by(listing: @listing)
+    @creator_applications = ''
   end
 
   def edit

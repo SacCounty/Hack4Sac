@@ -9,19 +9,26 @@ class DonationApplicationsController < ApplicationController
     donation_application = DonationApplication.new(applicant: current_user, listing: @listing, submission_status: submission_status)
 
     if donation_application.save
-      @listing.followers << current_user
+      unless @listing.followers.include?(current_user)
+        @listing.followers << current_user
+      end
       # Mailer send
       if @listing.requires_pdf_form?
         export_pdf and return
+      else
+        donation_application.update(submission_date: Time.now)
       end
-      flash[:success] = "Your request has been #{submission_status}!"
+      flash[:success] = "Your application has been #{submission_status}!"
     else
-      flash[:danger] = "Your request was not saved, please try again"
+      flash[:danger] = "Your request was unsuccessful, please try again"
     end
 
     redirect_to listing_path(@listing)
   end
 
+  def show
+    @listing = Listing.find(params[:listing_id])
+    display_pdf
   end
 
   private

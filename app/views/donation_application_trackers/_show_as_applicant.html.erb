@@ -1,0 +1,26 @@
+<hr>
+<table class="small-12 columns">
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Date Sent</th>
+      <th>Submission Status</th>
+      <th>Approval Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+        <% if @listing.requires_pdf_form? %>
+            <%= link_to "View Form", listing_donation_application_path(@listing), :target => '_blank' %>
+        <% else %>
+            Email
+        <% end %>
+        </td>
+        <td><%= date_format(@follower_application.submission_date) %></td>
+        <td><%= "#{@follower_application.submission_status}".titleize %></td>
+        <td><%= "#{@follower_application.approval_status || 'not seen'}".titleize %></td>
+      </tr>
+  </tbody>
+</table>
