@@ -7,7 +7,7 @@
     <div class="row">
       <!--TAB 1: VIEW LISTINGS: Check box for item categories-->
       <% if @categories && !@categories.empty? %>
-        <div class="small-3 columns panel radius" id="listing-filters">
+        <div class="small-12 medium-3 columns panel radius" id="listing-filters">
           <h5>Filter by Item Category:</h5>
           <% i ||= 0 %>
           <%= form_tag("/listings/browse", method: "get") do %>
@@ -24,13 +24,13 @@
         </div>
       <% end %>
 
-      <div class="small-<% if @categories && !@categories.empty? %>9<% else %>10 small-offset-1<% end %>  columns listings">
+      <div class="small-12 <% if @categories && !@categories.empty? %>medium-9<% else %>medium-10 medium-offset-1<% end %> columns listings">
         <% if @listings.empty? %>
             <h4>No Listings to Display</h4>
         <% else %>
             <% @listings.each do |listing| %>
                 <div class="row listings__listing">
-                  <div class="small-4 columns">
+                  <div class="small-4 medium-3 medium-offset-1 columns">
                     <figure class="listing-item">
                       <img src="<%= listing.get_show_image %>">
                     </figure>
