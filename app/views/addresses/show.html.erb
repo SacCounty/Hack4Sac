@@ -30,15 +30,5 @@
   <%= @address.zip_code %>
 </p>
 
-<p>
-  <strong>Phone</strong>
-  <%= @address.phone %>
-</p>
-
-<p>
-  <strong>Fax</strong>
-  <%= @address.fax %>
-</p>
-
 <%= link_to 'Edit', edit_user_address_path(id: @address.id, user_id: current_user.id) %> |
 <%= link_to 'Back', user_addresses_path %>
