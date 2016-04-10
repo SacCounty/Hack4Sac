@@ -30,7 +30,7 @@
         <% else %>
             <% @listings.each do |listing| %>
                 <div class="row listings__listing">
-                  <div class="small-4 medium-3 medium-offset-1 columns">
+                  <div class="small-4 <% if @categories && !@categories.empty? %>medium-3 medium-offset-1 <% end %>columns">
                     <figure class="listing-item">
                       <img src="<%= listing.get_show_image %>">
                     </figure>
