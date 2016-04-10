@@ -32,13 +32,13 @@
     <% else %>
         <% @listings.each do |listing| %>
             <div class="row">
-              <div class="large-3 columns" id="listings-content">
+              <div class="small-3 columns" id="listings-content">
                 <figure class="listing-item">
                   <img src="http://placehold.it/100x100&text=[img]">
                 </figure>
               </div>
 
-              <div class="large-9 medium-6 columns">
+              <div class="small-9 columns">
                 <h4><%= listing.title.titleize %></h4>
                 <p><%= listing.description %></p>
                 <ul class="inline-list">
