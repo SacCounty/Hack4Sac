@@ -20,6 +20,8 @@ The mission of HARE is to break down the siloes between departments and organiza
 
 ### Stakeholder Engagement
 - Jerry Gray, DTech (Sac County Dept of Technology)
+- Guy Sperry, DTech (Sac County Dept of Technology)
+- Keith Arnett, DTech (Sac County Dept of Technology)
 
 ### Developer Documentation
 #### Requirements
