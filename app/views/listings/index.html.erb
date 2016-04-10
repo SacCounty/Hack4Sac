@@ -4,26 +4,25 @@
   <!--TAB 1: VIEW LISTINGS-->
   <div class="content active" id="listings-index">
 
-    <!--TAB 1: VIEW LISTINGS: Check box for item categories-->
-    <% if @categories && !@categories.empty? %>
-        <div class="row">
-          <div class="large-3 columns" id="listing-filters">
-            <h3>Filter by Item Category:</h3>
-            <% i ||= 0 %>
-            <%= form_tag("/listings/browse", method: "get") do %>
-                <% @categories.each do |c| %>
-                    <% i += 1 %>
-                    <% category = c.name %>
-                    <div class="inline-field">
-                      <%= check_box_tag("categories[#{i}]", category, checked = @category_filters.include?(category), id: "checkbox#{i}") %>
-                      <%= label_tag "checkbox#{i}", category.titleize %>
-                    </div>
-                <% end %>
-                <%= submit_tag "Apply Filter", class: "button" %>
-            <% end %>
-          </div>
+    <div class="row">
+      <!--TAB 1: VIEW LISTINGS: Check box for item categories-->
+      <% if @categories && !@categories.empty? %>
+        <div class="small-3 columns panel radius" id="listing-filters">
+          <h5>Filter by Item Category:</h5>
+          <% i ||= 0 %>
+          <%= form_tag("/listings/browse", method: "get") do %>
+              <% @categories.each do |c| %>
+                  <% i += 1 %>
+                  <% category = c.name %>
+                  <div class="inline-field">
+                    <%= check_box_tag("categories[#{i}]", category, checked = @category_filters.include?(category), id: "checkbox#{i}") %>
+                    <%= label_tag "checkbox#{i}", category.titleize %>
+                  </div>
+              <% end %>
+              <%= submit_tag "Apply Filter", class: "button small primary radius " %>
+          <% end %>
         </div>
-    <% end %>
+      <% end %>
 
     <% if @listings.empty? %>
         <div class="large-12 columns">
