@@ -91,10 +91,19 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 // $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
-// $font-weight-normal: normal;
-// $font-weight-bold: bold;
+$font-weight-normal: normal;
+$font-weight-bold: bold;
 
-// $white       : #FFFFFF;
+$sac-orange: #ff792c;
+$sac-dark-orange: #d36424;
+
+$sac-link: #2b7eb5;
+$sac-link-hover: #144e82;
+
+$sac-medium-gray: #666666;
+$sac-gray: #f0f0f0;
+
+$white       : #FFFFFF;
 // $ghost       : #FAFAFA;
 // $snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
@@ -124,7 +133,7 @@ $font-family-sans-serif: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial
 
 // We use these to control various global styles
 // $body-bg: $white;
-// $body-font-color: $jet;
+$body-font-color: $sac-medium-gray;
 $body-font-family: $font-family-sans-serif;
 // $body-font-weight: $font-weight-normal;
 // $body-font-style: normal;
@@ -139,7 +148,7 @@ $body-font-family: $font-family-sans-serif;
 // $last-child-float: $opposite-direction;
 
 // We use these to make sure border radius matches unless we want it different.
-// $global-radius: 3px;
+$global-radius: 3px;
 // $global-rounded: 1000px;
 
 // We use these to control inset shadow shiny edges and depressions.
@@ -212,7 +221,7 @@ $body-font-family: $font-family-sans-serif;
 // $header-font-family: $body-font-family;
 // $header-font-weight: $font-weight-normal;
 // $header-font-style: normal;
-// $header-font-color: $jet;
+$header-font-color: $sac-medium-gray;
 // $header-line-height: 1.4;
 // $header-top-margin: .2rem;
 // $header-bottom-margin: .5rem;
@@ -247,7 +256,7 @@ $body-font-family: $font-family-sans-serif;
 
 // We use these to style paragraphs
 // $paragraph-font-family: inherit;
-// $paragraph-font-weight: $font-weight-normal;
+$paragraph-font-weight: lighter;
 // $paragraph-font-size: 1rem;
 // $paragraph-line-height: 1.6;
 // $paragraph-margin-bottom: rem-calc(20);
@@ -269,8 +278,8 @@ $body-font-family: $font-family-sans-serif;
 // We use these to style anchors
 // $anchor-text-decoration: none;
 // $anchor-text-decoration-hover: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: scale-color($anchor-font-color, $lightness: -14%);
+$anchor-font-color: $sac-link;
+$anchor-font-color-hover: $sac-link-hover;
 
 // We use these to style the <hr> element
 // $hr-border-width: 1px;
@@ -480,7 +489,7 @@ $body-font-family: $font-family-sans-serif;
 // $info-button-border-color: $info-button-bg-hover;
 
 // We use this to set the default radius used throughout the core.
-// $button-radius: $global-radius;
+$button-radius: $global-radius;
 // $button-round: $global-rounded;
 
 // We use this to set default opacity and cursor for disabled buttons.
