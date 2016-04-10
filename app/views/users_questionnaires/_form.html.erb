@@ -11,5 +11,8 @@
         <% @questionnaire.questions.each do |field| %>
             <%= render "users_questionnaires/fields/#{field.question_type}", question: field, f: builder %>
         <% end %>
+        <hr>
     <% end %>
+
+    <%= f.submit %>
 <% end %>
