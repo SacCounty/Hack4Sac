@@ -6,7 +6,7 @@ class DonationApplicationPdf < FillablePdfForm
     @user_questionnaire = Questionnaire.find_by(name: @user.account_type)
     @address = get_sanitized_attributes(@user.addresses.first, Address.new)
     @contact = get_sanitized_attributes(@user.contact_infos.find_by(primary: true), ContactInfo.new)
-    @contact_name = "#{@contact[:first_name]} #{@contact[:last_name]}"
+    @contact_name = "#{@contact[:first_name]} #{@contact[:last_name]}".titleize
     super()
   end
 
@@ -16,28 +16,28 @@ class DonationApplicationPdf < FillablePdfForm
       not_applicable = 'N/A'
 
       fill :donation_request, @listing.description
-      fill :email, @user.email
-      fill :title, @contact.title
+      fill :email, @user.email.downcase
+      fill :title, @contact.title.titleize
       fill :applicant_name, @contact_name
 
       [:sign_date, :application_date].each do |field|
         fill field, Date.today.to_s
       end
 
-      fill :address, @address.street_address_1 + (' ' + @address.street_address_2 || '')
+      fill :address, (@address.street_address_1.titleize + ' ' + @address.street_address_2.titleize).strip
 
-      fill :city, @address.city
+      fill :city, @address.city.titleize
 
       [:phone, :fax].each do |field|
         fill field, @contact.send(field)
       end
 
-      state_zip_code = @address.state + ' ' + @address.zip_code
+      state_zip_code = @address.state.titleize + ' ' + @address.zip_code
       fill :state_zip, state_zip_code
 
       if @user.account_type.downcase == 'organization'
         fill :name, @user.entity_name || @contact_name || ''
-        fill :contact_name, @user_questionnaire.questions.find_by(question_text: 'Organization Contact Name') || @contact_name || ''
+        fill :contact_name,  @contact_name || ''
 
         fill :public_benefits, 'No'
 
@@ -133,20 +133,18 @@ class DonationApplicationPdf < FillablePdfForm
       true
     end
 
+    private
+
     def get_sanitized_attributes(object_in, expected_object)
-      if object_in.nil?
-        object_in = expected_object
+      ar_obj = object_in || expected_object
+
+      ar_obj.attributes.each do |k, v|
+        v ||= ''
+
+        ar_obj.send("#{k}=", v)
       end
 
-      object_in.attributes.each do |k, v|
-        if v.nil?
-          v = ''
-        end
-
-        object_in.send("#{k}=", v)
-      end
-
-      object_in
+      ar_obj
     end
 
 end
