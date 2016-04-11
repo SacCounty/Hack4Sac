@@ -1,5 +1,5 @@
 <div class="field">
   <%= f.label :response, question.question_text %>
-  <%= f.radio_button :response, 'Yes' %> Yes
-  <%= f.radio_button :response, 'No' %> No
+  <%= f.radio_button :response, 'Yes', required: 'required' %> Yes
+  <%= f.radio_button :response, 'No', required: 'required' %> No
 </div>
