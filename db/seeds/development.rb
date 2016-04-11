@@ -24,37 +24,35 @@ demo_admin.save! unless AdminUser.where(email: demo_admin.email).exists?
 org_qstr = Questionnaire.new(name: "organization")
 org_qstr.save unless Questionnaire.where(name: org_qstr.name).exists?
 
-org_q = [
-"Organization Contact Person",
-"Are you exempt from taxation pursuant to 26 U.S.C 501 ( c )(3)?",
-"Are you a School District?",
-"School District Name",
-"Are you a Special District?",
-"Special District Name"
-]
-
-org_q.each do |question|
-  q = Question.new(question_text: question, questionnaire_id: org_qstr.id)
-  q.save unless Question.exists? q
-end
+q = Question.new(question_text: "Organization Contact Person", questionnaire_id: org_qstr.id, question_type: "text")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you exempt from taxation pursuant to 26 U.S.C 501 ( c )(3)?", questionnaire_id: org_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you a School District?", questionnaire_id: org_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "School District Name", questionnaire_id: org_qstr.id, question_type: "text")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you a Special District?", questionnaire_id: org_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Special District Name", questionnaire_id: org_qstr.id, question_type: "text")
+q.save unless Question.exists? q
 
 # INDIVIDUAL ACCOUNTS
 ind_qstr = Questionnaire.new(name: "individual")
 ind_qstr.save unless Questionnaire.where(name: ind_qstr.name).exists?
 
-ind_q = [
-"Are you receiving CalFresh benefits?",
-"Are you receiving CalWORKS benefits?",
-"Are you receiving County Relief benefits?",
-"Are you receiving General Relief benefits?",
-"Are you receiving General Assistance benefits?",
-"Are you receiving MediCal benefits?"
-]
-
-ind_q.each do |question|
-  q = Question.new(question_text: question, questionnaire_id: ind_qstr.id)
-  q.save unless Question.exists? q
-end
+q = Question.new(question_text: "Are you receiving CalFresh benefits?", questionnaire_id: ind_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you receiving CalWORKS benefits?", questionnaire_id: ind_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you receiving County Relief benefits?", questionnaire_id: ind_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you receiving General Relief benefits?", questionnaire_id: ind_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you receiving General Assistance benefits?", questionnaire_id: ind_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
+q = Question.new(question_text: "Are you receiving MediCal benefits?", questionnaire_id: ind_qstr.id, question_type: "yes_no")
+q.save unless Question.exists? q
 
 ###
 # USERS
