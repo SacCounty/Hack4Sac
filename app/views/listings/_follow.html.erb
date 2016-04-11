@@ -1,13 +1,11 @@
 <% if is_followed? @listing.id %>
-    <%= button_to [ :unfollow, @listing ] do %>
+    <%= button_to [ :unfollow, @listing ], {class: 'button small radius'} do %>
     <%= content_tag(:i, "", :class => "fa fa-eye-slash fa-lg") %>
-    Un-Watch
-    <% end %>
+    Un-Watch<% end %>
 <% else %>
-    <%= button_to [ :follow, @listing ] do %>
+    <%= button_to [ :follow, @listing ], {class: 'button small radius'} do %>
     <%= content_tag(:i, "", :class => "fa fa-eye fa-lg") %>
-    Watch
-    <% end %>
+    Watch<% end %>
 <% end %>
 
 <!-- This whole chunk of code compiles to HTML as:

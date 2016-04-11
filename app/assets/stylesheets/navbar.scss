@@ -1,11 +1,15 @@
 .top-bar {
   box-shadow: 2px solid $sac-dark-orange;
+
+  i.fa-home {
+    line-height: rem-calc(45);
+  }
 }
 
 
 .sub-nav-bg {
   background-color: $sac-gray;
-  margin-bottom: 15px;
+  margin-bottom: rem-calc(35);
 }
 
 .sub-nav {
