@@ -20,22 +20,18 @@
       </div>
       <div class="small-4 medium-3 column">
           <!-- end Watch button-->
-          <% if current_user and not @has_current_request %>
-            <%= button_to "Request Donation", create_application_path(:id => @listing.id), :class => "button small radius", :id => "requestbutton", :method => :post %>
+          <% if current_user and not already_requested? %>
+            <%= button_to "Request Donation", listing_donation_applications_path(:listing_id => @listing.id), :class => "button small radius", :id => "requestbutton", :method => :post %>
           <% end %>
       </div>
       <div class="small-4 medium-3 column end">
           <%= link_to "Back to Listings", session.delete(:listings_index) %>
       </div>
-      <!-- Do not edit the section below -->
-      <!-- Begin Donation Application Status section displayed to Listing creators and Listing followers -->
-      <!-- Partials located in app/views/donation_application_trackers/ -->
       <% if current_user && current_user == @listing.creator %>
       <%= render 'donation_application_trackers/show_as_creator' %>
       <% elsif current_user && (@listing.followers.include? current_user) %>
-      <%= render 'donation_application_trackers/show_as_follower' %>
+      <%= render 'donation_application_trackers/show_as_applicant' %>
       <% end %>
-      <!-- End Donation Application Status section -->
     </div>
   </div>
 </div>
