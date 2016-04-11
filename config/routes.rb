@@ -18,11 +18,9 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :addresses
     get '/questionnaires/new', to: 'users_questionnaires#new'
-    get '/questionnaires/edit', to: 'users_questionnaires#edit'
+    get '/questionnaires/:id/edit', to: 'users_questionnaires#edit'
     post '/questionnaires', to: 'users_questionnaires#create'
-    patch '/questionnaires', to: 'users_questionnaires#create'
-    post '/questionnaires/update', to: 'users_questionnaires#update'
-    patch '/questionnaires/update', to: 'users_questionnaires#update'
+    post '/questionnaires/:id', to: 'users_questionnaires#update'
     get '/donations', to: 'listings#donation_history'
     get '/requests', to: 'listings#request_history'
     get '/watched_listings', to: 'listings#follow_history'
