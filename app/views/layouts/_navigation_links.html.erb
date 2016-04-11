@@ -16,6 +16,9 @@
       <li class="show-for-small-only">
         <%= link_to "My Requests", user_requests_path(current_user) %>
       </li>
+      <li class="show-for-small-only">
+        <%= link_to "Watched Listings", user_watched_listings_path(current_user) %>
+      </li>
       <!-- /menu items from tabs for small screens -->
       <li>
         <%= link_to 'Logout', destroy_user_session_path, :method => :delete %>
