@@ -1,12 +1,13 @@
 class UsersQuestionnairesController < ApplicationController
   before_action :get_questionnaire
+  before_action :user_questionnaire_params, only: :update
 
   def edit
     #
   end
 
   def update
-    #
+    
   end
 
   private
@@ -21,5 +22,9 @@ class UsersQuestionnairesController < ApplicationController
         response = q.response.response_text if q.response
         [q.question_text, response]
       }.to_h
+    end
+
+    def user_questionnaire_params
+      params.require(:response).permit(:id, :user_id, :question_id, :response_text)
     end
 end
