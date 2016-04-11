@@ -1,5 +1,13 @@
 .listings {
   &__listing.row {
     margin-bottom: 25px;
+
+    figure.listing-item {
+      margin: 0;
+    }
   }
+}
+
+.button-row {
+  margin-top: rem-calc(15);
 }
