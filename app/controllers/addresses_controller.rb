@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
+  before_action :reset_primary_address, only: [:create, :update]
 
   def index
     redirect_to user_path(current_user)
@@ -48,6 +49,13 @@ class AddressesController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  protected
+    def reset_primary_address
+      current_user.addresses.each do |address|
+        address.update_attributes(primary: false)
+      end
+    end
+
   private
     def address_params
       params.require(:address).permit(:street_address_1,
@@ -55,6 +63,7 @@ class AddressesController < ApplicationController
                                       :city,
                                       :state,
                                       :zip_code,
-                                      :address_type)
+                                      :address_type,
+                                      :primary)
     end
 end
