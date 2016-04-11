@@ -1,5 +1,6 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
+  before_action :reset_primary_address, only: [:create, :update]
 
   def index
     redirect_to user_path(current_user)
