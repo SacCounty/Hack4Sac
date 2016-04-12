@@ -19,6 +19,8 @@ class DonationApplicationsController < ApplicationController
         donation_application.update(submission_date: Time.now)
       end
       flash[:success] = "Your application has been #{submission_status}!"
+      DonationApplicationMailer.donation_request(@listing, current_user).deliver_now
+      DonationApplicationMailer.donation_requested(@listing, current_user).deliver_now
     else
       flash[:danger] = "Your request was unsuccessful, please try again"
     end
@@ -37,6 +39,7 @@ class DonationApplicationsController < ApplicationController
 
     if donation_application.update_attributes(submission_status: "mailed", submission_date: Time.now)
       flash[:success] = "Your submission status has been updated"
+      DonationApplicationMailer.donation_pdf_mailed(listing, current_user).deliver_now
     else
       flash[:danger] = "Your request was unsuccessful, please try again"
     end

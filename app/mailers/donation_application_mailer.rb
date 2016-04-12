@@ -1,33 +1,37 @@
 class DonationApplicationMailer < ApplicationMailer
-  before_action :don_app_mailer_params
-  before_action :get_listing
-  before_action :get_donee
-  before_action :get_donor
 
-  def donation_request
-    @subject = 'Request Submitted for Listing "' + @listing.title + '" (ID #' + @listing.id + ')'
-    mail(to: @user.email, subject: @subject)
+  def donation_request(listing, donee_user)
+    @listing = Listing.find(listing.id)
+    @donor = User.find(@listing.user_id)
+    @donee = donee_user
+
+    subject = 'Request Submitted for Listing "' + @listing.title + '" (ID #' + @listing.id.to_s + ')'
+
+    mail(to: @donor.email, subject: subject)
   end
 
-  def donation_pdf_mailed
-    @subject = 'Sac County Donation Request Form Mailed'
-    mail(to: @donor.email, subject: @subject)
+  def donation_requested(listing, donee_user)
+    @listing = Listing.find(listing.id)
+    @donor = User.find(@listing.user_id)
+    @donee = donee_user
+
+    subject = 'Your Request for "' + @listing.title + '" (ID #' + @listing.id.to_s + ') Has Been Submitted'
+
+    mail(to: @donee.email, subject: subject)
+  end
+
+  def donation_pdf_mailed(listing, donee_user)
+    @listing = Listing.find(listing.id)
+    @donor = User.find(@listing.user_id)
+    @donee = donee_user
+
+    subject = 'Sac County Donation Request Form Mailed'
+
+    mail(to: @donor.email, subject: subject)
   end
 
   private
-    def don_app_mailer_params
-      @don_app_mailer_params = params.require(:listing).permit(:id)
-    end
-  
-    def get_donee
-      @donee = current_user
-    end
-  
-    def get_donor
-      @donor = User.find(@listing.user_id)
-    end
-  
-    def get_listing
-      @listing = Listing.find(params[:id])
+    def listing_params
+      params.require(:listing).permit([:id])
     end
 end
