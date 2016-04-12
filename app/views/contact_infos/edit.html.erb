@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 columns">
+    <h1>Edit Contact</h1>
+
+    <%= simple_form_for(@contact_info, :url => user_contact_path, :method => :put) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :primary,
+                :as => :boolean,
+                :label => "Set As Default",
+                :label_method => :last,
+                :value_method => :first,
+                :boolean_style => :inline,
+                :required => true
+        %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :title %>
+        <%= f.input :phone %>
+        <%= f.input :extension %>
+        <%= f.input :fax %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+
+    <%= link_to 'Back', user_path(user_path) %>
+
+  </div>
+</div>
