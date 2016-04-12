@@ -1,5 +1,11 @@
 <%= render 'listings/sub_navigation' %>
 
+<div class="row">
+    <div class="columns small-12">
+        <h1 class="text-center"><%= @page_title %></h1>
+    </div>
+</div>
+
 <div class="tabs-content">
   <!--TAB 1: VIEW LISTINGS-->
   <div class="content active" id="listings-index">
@@ -26,7 +32,7 @@
 
       <div class="small-12 <% if @categories && !@categories.empty? %>medium-9<% else %>medium-10 medium-offset-1<% end %> columns listings">
         <% if @listings.empty? %>
-            <h4>No Listings to Display</h4>
+            <h4 class="text-center">No Listings to Display</h4>
         <% else %>
             <% @listings.each do |listing| %>
                 <div class="row listings__listing">

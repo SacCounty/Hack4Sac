@@ -44,6 +44,43 @@ class DonationApplicationsController < ApplicationController
     redirect_to listing_path(listing)
   end
 
+
+  def approve_applicant
+    listing = Listing.find(params[:listing_id])
+    donation_application = DonationApplication.find(params[:id])
+
+    if donation_application.update_attributes(approval_status: "approved")
+      flash[:success] = "Application status has been updated for #{donation_application.applicant.email}"
+    else
+      flash[:danger] = "Your request was unsuccessful, please try again"
+    end
+    redirect_to listing_path(listing)
+  end
+
+  def decline_applicant
+    listing = Listing.find(params[:listing_id])
+    donation_application = DonationApplication.find(params[:id])
+
+    if donation_application.update_attributes(approval_status: "declined")
+      flash[:success] = "Application status has been updated for #{donation_application.applicant.email}"
+    else
+      flash[:danger] = "Your request was unsuccessful, please try again"
+    end
+    redirect_to listing_path(listing)
+  end
+
+  def reset_applicant
+    listing = Listing.find(params[:listing_id])
+    donation_application = DonationApplication.find(params[:id])
+
+    if donation_application.update_attributes(approval_status: nil)
+      flash[:success] = "Application status has been updated for #{donation_application.applicant.email}"
+    else
+      flash[:danger] = "Your request was unsuccessful, please try again"
+    end
+    redirect_to listing_path(listing)
+  end
+
   private
 
   def donation_application_params
