@@ -14,8 +14,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # During development, watch for mailer errors...and catch everything with mailcatcher.
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = false
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = {
       host:               'localhost',
       port:               3000,

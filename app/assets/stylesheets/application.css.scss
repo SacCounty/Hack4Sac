@@ -1,9 +1,12 @@
 @import "font-awesome";
 @import 'foundation_and_overrides';
 
+@import 'main';
+
 @import 'header',
         'navbar',
-        'button';
+        'button',
+        'alert-box';
 
 @import 'listings';
 @import 'users';

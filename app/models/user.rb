@@ -12,17 +12,10 @@ class User < ActiveRecord::Base
   has_many :followed_listings, dependent: :destroy
   has_many :donation_applications, dependent: :destroy
 
-  # TODO Refactor: a model instance should only know its own attributes and not depend on other model attributes
-  def full_name
-    name = self.entity_name
+  before_create :set_account_type
 
-    unless name
-      contact_info = self.contact_infos.find_by(primary: true)
-      name = "#{contact_info.first_name} + #{contact_info.last_name}".strip.titleize if contact_info
-      name ||= ''
-    end
-
-    name
+  # TODO Allow user to select default account type
+  def set_account_type
+      self.account_type = "organization"
   end
-
 end

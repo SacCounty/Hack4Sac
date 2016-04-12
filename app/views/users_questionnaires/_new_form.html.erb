@@ -1,0 +1,18 @@
+<%= form_for @questionnaire, :url => user_questionnaires_path do |f| %>
+    <% if @questionnaire.errors.any? %>
+        <ul>
+          <% @questionnaire.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+    <% @questionnaire.questions.each do |field| %>
+        <%= f.fields_for "questions[]", field do |builder| %>
+            <%= render "users_questionnaires/fields/#{field.question_type}", { question: field, f: builder } %>
+        <% end %>
+        <hr>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>
