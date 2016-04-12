@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :reset_primary_address, only: [:create, :update]
 
   def index
     redirect_to user_path(current_user)
@@ -23,6 +22,7 @@ class AddressesController < ApplicationController
   end
 
   def create
+    reset_primary_address if address_params[:primary]
     @address = Address.new(address_params)
 
     if @address.save
@@ -34,6 +34,7 @@ class AddressesController < ApplicationController
   end
 
   def update
+    reset_primary_address if address_params[:primary]
     @address = Address.find(params[:id])
 
     if @address.update(address_params)

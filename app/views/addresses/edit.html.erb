@@ -6,6 +6,14 @@
       <%= f.error_notification %>
 
       <div class="form-inputs">
+        <%= f.input :primary,
+                :as => :boolean,
+                :label => "Set As Default",
+                :label_method => :last,
+                :value_method => :first,
+                :boolean_style => :inline,
+                :required => true
+        %>
         <%= f.input :address_type,
                     :collection => [["mailing", "Mailing Address"], ["physical", "Physical Address"]],
                     :as => :radio_buttons,
