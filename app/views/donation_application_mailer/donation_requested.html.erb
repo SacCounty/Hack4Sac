@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+</head>
+<body>
+<h3>Dear
+  <% if !@donee.entity_name.nil? %>
+      <% unless @donee.entity_name.empty? %>
+          <%= @donee.entity_name %>
+      <% end %>
+  <% elsif !@donee.contact_infos.nil? %>
+      <% unless @donee.contact_infos.empty? %>
+          <%= @donee.contact_infos.first_name %>
+      <% end %>
+  <% else %>
+      SHARE User
+  <% end %>,
+</h3>
+<p>You have requested <%= @listing.title %> from
+  <% if !@donor.entity_name.nil? %>
+      <% unless @donor.entity_name.empty? %>
+          <%= @donor.entity_name %>
+      <% end %>
+  <% elsif !@donor.contact_infos.nil? %>
+      <% unless @donor.contact_infos.empty? %>
+          <%= @donor.contact_infos.first_name %>
+      <% end %>
+  <% end %>.</p>
+<blockquote>
+  <%= @listing.description %>
+</blockquote>
+<p>You can watch the status of your request from your account dashboard at http://sac.hare.tech</p>
+<p>Thank You!</p>
+<p>Sacramento Human Assistance Resource Exchange (SHARE)</p>
+</body>
+</html>
