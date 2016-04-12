@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :reset_primary_address, only: [:create, :update]
 
   def index
     redirect_to user_path(current_user)
@@ -23,17 +22,20 @@ class AddressesController < ApplicationController
   end
 
   def create
+    reset_primary_address if address_params[:primary]
     @address = Address.new(address_params)
 
     if @address.save
       current_user.addresses << @address
-      redirect_to user_address_path(id: @address.id, user_id: current_user.id)
+      flash[:success] = "Your address information was saved successfully"
     else
-      redirect_to user_path(current_user)
+      flash[:danger] = "Your address information was not saved. Please check all fields carefully and try again."
     end
+      redirect_to user_path(current_user)
   end
 
   def update
+    reset_primary_address if address_params[:primary]
     @address = Address.find(params[:id])
 
     if @address.update(address_params)
