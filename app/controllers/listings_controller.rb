@@ -1,5 +1,6 @@
 class ListingsController < ApplicationController
   include ListingsHelper
+  include UsersHelper
   include DonationApplicationsHelper
   before_action :authenticate_user!, except: [:index, :show]
 
@@ -22,14 +23,14 @@ class ListingsController < ApplicationController
     session.delete(:listings_index)
     @categories = Category.all.to_a
     @category_filters = []
-    @listings = Listing.all
+    @page_title = "Available Donations"
+    @listings = Listing.order(created_at: :desc)
   end
 
   def show
     set_listings_index
     @listing = Listing.find(params[:id])
     @follower_application = current_user.donation_applications.find_by(listing: @listing)
-    @creator_applications = ''
   end
 
   def edit
@@ -47,18 +48,21 @@ class ListingsController < ApplicationController
 
   def donation_history
     @listings = Listing.where(creator: current_user).to_a
+    @page_title = "My Donations"
     render 'listings/index'
   end
 
   def request_history
     donation_applications = current_user.donation_applications.to_a
     @listings = donation_applications.map { |l| l = l.listing }
+    @page_title = "My Requests"
     render 'listings/index'
   end
 
   def follow_history
     followed_listings = current_user.followed_listings.to_a
     @listings = followed_listings.map { |l| l = l.listing }
+    @page_title = "My Watched Listings"
     render 'listings/index'
   end
 

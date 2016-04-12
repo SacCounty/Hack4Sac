@@ -4,6 +4,7 @@ module UsersHelper
     prefix, at, suffix = email_address.rpartition("@").reject(&:empty?)
     prefix.gsub!(/(\W)/i){ |char| wbr + char }
     suffix.gsub!(/(\W)/i){ |char| wbr + char }
-    prefix + wbr + at + suffix
+
+    (prefix + wbr + at + suffix).html_safe
   end
 end
