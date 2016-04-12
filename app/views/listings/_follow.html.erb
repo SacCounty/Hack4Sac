@@ -1,24 +1,12 @@
-<% if is_followed? @listing.id %>
-    <%= button_to [ :unfollow, @listing ], {class: 'button small radius'} do %>
-    <%= content_tag(:i, "", :class => "fa fa-eye-slash fa-lg") %>
-    Un-Watch<% end %>
-<% else %>
-    <%= button_to [ :follow, @listing ], {class: 'button small radius'} do %>
-    <%= content_tag(:i, "", :class => "fa fa-eye fa-lg") %>
-    Watch<% end %>
+<% unless current_user == @listing.creator %>
+    <% if is_followed? @listing.id %>
+        <%= button_to [ :unfollow, @listing ], {class: 'button small radius'} do %>
+        <%= content_tag(:i, "", :class => "fa fa-eye-slash fa-lg") %>
+        Un-Watch<% end %>
+    <% else %>
+        <%= button_to [ :follow, @listing ], {class: 'button small radius'} do %>
+        <%= content_tag(:i, "", :class => "fa fa-eye fa-lg") %>
+        Watch<% end %>
+    <% end %>
 <% end %>
-
-<!-- This whole chunk of code compiles to HTML as:
-<button><i class="fa fa-eye fa-lg">Watch</button>
-
-It's okay to wrap the whole chunk of code in a <div> or any regular HTML element if you need to
--->
-
-<!-- button_to compiles to:
-<button>Watch</button>
--->
-
-<!-- content_tag compiles to:
-<i class="fa fa-eye fa-lg"></i>
-which is the Font Awesome eyeball icon -->
 
