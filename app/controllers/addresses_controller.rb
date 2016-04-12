@@ -27,10 +27,11 @@ class AddressesController < ApplicationController
 
     if @address.save
       current_user.addresses << @address
-      redirect_to user_address_path(id: @address.id, user_id: current_user.id)
+      flash[:success] = "Your address information was saved successfully"
     else
-      redirect_to user_path(current_user)
+      flash[:danger] = "Your address information was not saved. Please check all fields carefully and try again."
     end
+      redirect_to user_path(current_user)
   end
 
   def update
