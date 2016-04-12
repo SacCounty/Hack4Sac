@@ -1,4 +1,4 @@
-<%= form_for @questionnaire, :url => user_questionnaires_update_path do |f| %>
+<%= form_for @questionnaire, :url => user_questionnaire_path do |f| %>
     <% if @questionnaire.errors.any? %>
         <ul>
           <% @questionnaire.errors.full_messages.each do |msg| %>
