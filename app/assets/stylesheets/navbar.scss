@@ -9,7 +9,7 @@
 
 .sub-nav-bg {
   background-color: $sac-gray;
-  margin-bottom: rem-calc(35);
+  transform: translateY(-($main-margin-top));
 }
 
 .sub-nav {
