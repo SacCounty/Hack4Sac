@@ -11,4 +11,11 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :followed_listings, dependent: :destroy
   has_many :donation_applications, dependent: :destroy
+
+  before_create :set_account_type
+
+  # TODO Allow user to select default account type
+  def set_account_type
+      self.account_type = "organization"
+  end
 end
