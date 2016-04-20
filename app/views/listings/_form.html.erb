@@ -4,6 +4,7 @@
       <%= f.input :title %>
       <%= f.input :description %>
       <%= f.input :fair_market_value, input_html: { type: "number", step: "0.01", value: "0.00" } %>
+      <%= f.input :image_url, label: "Image Url (optional)" %>
       <%= f.label :category %>
       <%= f.collection_select :category_ids, Category.order(:name), :id, :name, {}, { multiple: false } %>
     </div>
