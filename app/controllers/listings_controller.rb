@@ -30,11 +30,14 @@ class ListingsController < ApplicationController
   def show
     set_listings_index
     @listing = Listing.find(params[:id])
-    @follower_application = current_user.donation_applications.find_by(listing: @listing)
-    applications = DonationApplication.includes(:applicant).where(listing: @listing).order(submission_date: :asc, created_at: :asc)#.reject { |da| da.submission_date.nil? }
-    @applications = applications.map do | application |
-      { tracker: application,
-        applicant: get_applicant_info(application.applicant) }
+    if current_user
+      @application_submission = current_user.donation_applications.find_by(listing: @listing)
+      applications = DonationApplication.includes(:applicant).where(listing: @listing).order(submission_date: :asc, created_at: :asc).reject { |da| da.submission_date.nil? }
+
+      @applications_received = applications.map do | application |
+        { tracker: application,
+          applicant: get_applicant_info(application.applicant) }
+      end
     end
   end
 
