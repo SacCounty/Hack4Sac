@@ -26,12 +26,12 @@ gem 'client_side_validations-simple_form', github: 'DavyJonesLocker/client_side_
 # but required for Rails 4 and above
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+gem 'faker'
 
 group :development, :test do
   gem 'better_errors'
   gem 'launchy'
   gem 'pry-rails'
-  gem 'faker'
   # gem 'rspec-rails', '~> 3.0.0'
   # gem 'factory_girl_rails'
   # gem 'capybara'

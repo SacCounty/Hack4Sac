@@ -17,15 +17,15 @@
             Email
         <% end %>
         </td>
-        <td><%= date_format(@follower_application.submission_date) %></td>
+        <td><%= date_format(@application_submission.submission_date) %></td>
         <td>
-        <% if @listing.requires_pdf_form? && @follower_application.submission_date.nil? %>
+        <% if @listing.requires_pdf_form? && @application_submission.submission_date.nil? %>
         <%= link_to "Click Here If Request Mailed", listing_update_submission_path(@listing), method: :post %>
         <% else %>
-        <%= "#{@follower_application.submission_status}".titleize %>
+        <%= "#{@application_submission.submission_status}".titleize %>
         <% end %>
         </td>
-        <td><%= "#{@follower_application.approval_status || 'not seen'}".titleize %></td>
+        <td><%= "#{@application_submission.approval_status || 'not seen'}".titleize %></td>
       </tr>
   </tbody>
 </table>

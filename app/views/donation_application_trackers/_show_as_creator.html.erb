@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @applications.each do |app| %>
+    <% @applications_received.each do |app| %>
     <tr>
         <td><%= "#{app[:applicant][:info][:first_name]} #{app[:applicant][:info][:last_name]}".titleize %></td>
         <td><%= email_break_oppty(app[:tracker].applicant.email.downcase) %></td>
