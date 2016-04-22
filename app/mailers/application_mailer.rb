@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "connect@hare.tech"
+  default from: ENV['HARETECH_USERNAME']
   layout 'mailer'
 end
