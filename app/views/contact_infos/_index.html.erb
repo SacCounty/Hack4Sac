@@ -1,0 +1,37 @@
+<h3>Contact Information</h3>
+<table class="columns small-12">
+<div class="row"> 
+    <div class="columns">
+    <%= link_to new_user_contact_path(user_id: current_user.id) do %>
+        <%= content_tag(:i, "", :class => "fa fa-plus fa-lg") %>
+        New Contact
+    <% end %>
+    </div> 
+</div>
+  <thead>
+    <tr>
+      <th colspan="2">Contact Person</th>
+      <th>Job Title</th>
+      <th>Phone</th>
+      <th>Fax</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+<% unless @contacts.empty? %>
+  <tbody>
+    <% @contacts.each do |contact| %>
+      <tr>
+        <td><%= "#{contact.first_name} #{contact.last_name}".titleize %></td>
+        <td><%= " (Primary)" if contact.primary %></td>
+        <td><%= "#{contact.title}".titleize %></td>
+        <td><%= "#{contact.phone}" %></td>
+        <td><%= "#{contact.fax }" %></td>
+        <td><%= link_to 'Edit', edit_user_contact_path(id: contact.id, user_id: current_user.id) %></td>
+        <td><%= link_to 'Remove', user_contact_path(id: contact.id, user_id: current_user.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<%= render 'addresses/index' %>

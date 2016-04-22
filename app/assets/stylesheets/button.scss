@@ -1,0 +1,17 @@
+button, .button {
+  border-bottom-width: 5px;
+  border-radius: $global-radius;
+}
+
+.button.small {
+  border-bottom-width: 3px;
+  margin-bottom: 0.5rem;
+}
+
+#requestbutton {
+  white-space: pre-wrap;
+}
+
+.alert-box .button {
+  border-bottom-width: 0;
+}

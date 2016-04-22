@@ -1,0 +1,35 @@
+.top-bar {
+  box-shadow: 2px solid $sac-dark-orange;
+
+  i.fa-home {
+    line-height: rem-calc(45);
+  }
+}
+
+
+.sub-nav-bg {
+  background-color: $sac-gray;
+  transform: translateY(-($main-margin-top));
+}
+
+.sub-nav {
+  background-color: $sac-gray;
+  font-weight: lighter;
+  padding-top: 7px;
+  padding-bottom: 7px;
+
+  dd {
+    margin-left: 0;
+    margin-right: 1.5rem;
+
+    a {
+      color: $sac-dark-gray;
+      padding-left: .5rem;
+      padding-right: .5rem;
+      &:hover {
+            background: white;
+            color: $sac-medium-gray;
+          }
+    }
+  }
+}

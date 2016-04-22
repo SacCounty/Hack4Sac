@@ -1,0 +1,18 @@
+<div class="contain-to-grid sticky">
+  <nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1>
+        <%= link_to(root_path) do %>
+          <span class="hide-for-small">Home</span>
+          <i class="fa fa-home fa-lg show-for-small"></i>
+        <% end %>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+    </ul>
+    <div class="top-bar-section">
+      <%= render 'layouts/navigation_links' %>
+    </div>
+  </nav>
+</div>

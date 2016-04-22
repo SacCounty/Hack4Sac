@@ -1,0 +1,12 @@
+.contain-to-grid.sticky.fixed + main > .alert-box-row {
+  transform: translate(-50%, 45px); // Position below fixed navbar
+}
+
+.alert-box-row {
+  transition: all 0.25s;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: 999;
+  transform: translateX(-50%);
+}

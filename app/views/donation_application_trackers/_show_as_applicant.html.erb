@@ -1,0 +1,31 @@
+<hr>
+<table class="small-12 columns">
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Date Sent</th>
+      <th>Submission Status</th>
+      <th>Approval Status</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>
+        <% if @listing.requires_pdf_form? %>
+            <%= link_to "View Form", listing_donation_application_path(@listing), :target => '_blank' %>
+        <% else %>
+            Email
+        <% end %>
+        </td>
+        <td><%= date_format(@application_submission.submission_date) %></td>
+        <td>
+        <% if @listing.requires_pdf_form? && @application_submission.submission_date.nil? %>
+        <%= link_to "Click Here If Request Mailed", listing_update_submission_path(@listing), method: :post %>
+        <% else %>
+        <%= "#{@application_submission.submission_status}".titleize %>
+        <% end %>
+        </td>
+        <td><%= "#{@application_submission.approval_status || 'not seen'}".titleize %></td>
+      </tr>
+  </tbody>
+</table>

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="small-12 medium-8 medium-offset-2 columns">
+    <h1>Edit Address</h1>
+
+    <%= simple_form_for(@address, :url => user_address_path, :method => :put) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= f.input :primary,
+                :as => :boolean,
+                :label => "Set As Default",
+                :label_method => :last,
+                :value_method => :first,
+                :boolean_style => :inline,
+                :required => true
+        %>
+        <%= f.input :address_type,
+                    :collection => [["mailing", "Mailing Address"], ["physical", "Physical Address"]],
+                    :as => :radio_buttons,
+                    :label_method => :last,
+                    :value_method => :first,
+                    :required => true
+        %>
+        <%= f.input :street_address_1 %>
+        <%= f.input :street_address_2 %>
+        <%= f.input :city %>
+        <%= f.input :state %>
+        <%= f.input :zip_code %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit %>
+      </div>
+    <% end %>
+
+    <%= link_to 'Back', user_path(user_path) %>
+
+  </div>
+</div>

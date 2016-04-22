@@ -1,0 +1,13 @@
+<%# Rails flash messages styled for Zurb Foundation %>
+<div class="row alert-box-row">
+  <div class="small-12 columns alert-box-columns">
+    <% flash.each do |name, msg| %>
+        <% if msg.is_a?(String) %>
+            <div data-alert class="alert-box <%= name.to_s == 'notice' ? 'success' : 'alert' %>">
+                <a href="#" class="close">&times;</a>
+                <%= content_tag :div, msg %>
+            </div>
+        <% end %>
+    <% end %>
+  </div>
+</div>
